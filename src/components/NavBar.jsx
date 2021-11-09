@@ -3,9 +3,9 @@ import React from "react";
 const NavBar = ({setModeResponsive, modeResponsive}) => {
   return (
     <div className="flex flex-row justify-between items-center shadow border-gray-100 bg-white absolute w-screen h-22 z-20">
-      <div className="flex h-10 text-gray-400 pl-10 items-center">
+      <div className="flex h-10 text-gray-400 pl-10 items-center ">
         <a onClick={()=> setModeResponsive(!modeResponsive)}>
-          <i className="fad fa-angle-double-left"></i>
+          <i className="fad fa-angle-double-left hover:text-green-300"></i>
         </a>
         <div className="pl-10 text-xs relative hidden sm:flex">
           <input
@@ -22,16 +22,16 @@ const NavBar = ({setModeResponsive, modeResponsive}) => {
           LOGO
           </div>
 
-      <div className="flex h-10 items-center text-gray-300 text-lg">
-        <div className="flex bg-gray-200 w-10 h-6 mr-5 rounded-xl text-white items-center pl-1">
+      <div className="flex h-10 items-center text-gray-300 text-lg ">
+        <div className="flex bg-gray-200 w-10 h-6 mr-5 rounded-xl text-white items-center pl-1 hover:text-green-300">
           <a href="#">
             <i className="fas fa-circle"></i>
           </a>
         </div>
-        <div className=" mr-5">
+        <div className="mr-5 hover:text-green-300">
           <i className="fas fa-user-cog"></i>
         </div>
-        <div className="mr-5">
+        <div className="mr-5 hover:text-green-300">
           <i className="far fa-bell"></i>
         </div>
         <div className="">
