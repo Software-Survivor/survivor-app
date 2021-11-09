@@ -4,6 +4,7 @@ import Index from './pages/Index';
 import IndexAdmin from './pages/admin/IndexAdmin';
 import Users from './pages/admin/Users';
 import LayoutAdmin from './layouts/LayoutAdmin';
+import AdminIndex from './pages/AdminIndex';
 import { UserContext } from './context/user';
 import { DarkContext } from './context/dark';
 import { useState } from 'react';
@@ -18,6 +19,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Index/>} />
+        <Route path='/admin/index' element={<AdminIndex/>} />
         <Route path='/admin' element={<LayoutAdmin/>}> 
            <Route path='' element={<IndexAdmin />} />
            <Route path='usuarios' element={<Users />} />
