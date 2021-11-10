@@ -17,3 +17,6 @@
 <p>
   
 <h2><samp>👨🏻‍💻 Sobre Nosotros</samp></h2>
+
+  
+<p>Andrés Pérez: "Soy técnico de sistemas y lenguas modernas, soy una persona en constante búsqueda de conocimiento, me encanta aprender cosas nuevas todos los días y soy apasionado por la tecnología y el desarrollo, tengo una certificación en desarrollo de vídeo juegos con Unity a nivel intermedio y actualmente me encuentro cursando la ingeniería de sistemas, tengo esposa y dos hijos y son la razón principal para salir adelante y buscar una mejor calidad de vida."<p/>
