@@ -20,3 +20,5 @@
 
   
 <p>Andrés Pérez: "Soy técnico de sistemas y lenguas modernas, soy una persona en constante búsqueda de conocimiento, me encanta aprender cosas nuevas todos los días y soy apasionado por la tecnología y el desarrollo, tengo una certificación en desarrollo de vídeo juegos con Unity a nivel intermedio y actualmente me encuentro cursando la ingeniería de sistemas, tengo esposa y dos hijos y son la razón principal para salir adelante y buscar una mejor calidad de vida."</p>
+
+<p>Alvaro Bedoya: "Tecnólogo en análisis y desarrollo de sistemas de informaciòn del SENA, esposo de Gabriela y padre de Ana Gabriela, laboro como analista de soporte en www.goldenrace.com, dando soporte a las aplicaciones tanto linux como Windows, apenas llevo incursionando en el desarrollo de software desde 2019, creando aplicaciones Php junto a Mysql, mi mayor experiencia es con el soporte técnico en muchos campos de la informática y las telecomunicaciones. Feliz de estar en MisiònTIC y poner andar este paìs con deploys."</p>
