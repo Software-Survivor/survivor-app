@@ -26,3 +26,5 @@
 <p>Alvaro Bedoya: "Tecnólogo en análisis y desarrollo de sistemas de informaciòn del SENA, esposo de Gabriela y padre de Ana Gabriela, laboro como analista de soporte en www.goldenrace.com, dando soporte a las aplicaciones tanto linux como Windows, apenas llevo incursionando en el desarrollo de software desde 2019, creando aplicaciones Php junto a Mysql, mi mayor experiencia es con el soporte técnico en muchos campos de la informática y las telecomunicaciones. Feliz de estar en MisiònTIC y poner andar este paìs con deploys."</p>
 
 <p>Gustavo de Armas: "Estudié Economía y Finanzas en la Universidad de La Sabana, complementando mis estudios profesionales con un curso de Python en la Universidad Austral de Argentina. Poseo conocimiento en Diseño Gráfico, Desarrollo Web con Django, adicionalmente soy desarrollador de soluciones con Filemaker, actualmente conocido como Claris."</p>
+
+<p>Juan David Montoya: "Soy ingeniero biológico de la Universidad Nacional, he realizado cursos en analítica de datos y desarrollo web a través de Coursera. Me apasiona la programación y también la Biotecnología, me divierto igual con una computadora como en un laboratorio<p>
