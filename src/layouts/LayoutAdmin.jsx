@@ -9,11 +9,11 @@ import { Outlet } from 'react-router-dom'
 const LayoutAdmin = () => {
     return (
         <div>
-            <Header />
+           
             <NavBar />
             <SideBar />
             <Outlet /> 
-            <Footer />
+            
         </div>
     )
 }

@@ -19,7 +19,7 @@ const Items = ({icon, items}) => {
   return (
     <div className="flex flex-col justify-center items-center h-32 w-26 p-2 hover:text-tic-100 ">
       <a href="#">
-        <i class={icon}></i>
+        <i className={icon}></i>
       </a>
       <span className="text-xs">{items}</span>
     </div>
