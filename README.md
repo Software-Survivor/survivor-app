@@ -28,3 +28,5 @@
 <p>Gustavo de Armas: "Estudié Economía y Finanzas en la Universidad de La Sabana, complementando mis estudios profesionales con un curso de Python en la Universidad Austral de Argentina. Poseo conocimiento en Diseño Gráfico, Desarrollo Web con Django, adicionalmente soy desarrollador de soluciones con Filemaker, actualmente conocido como Claris."</p>
 
 <p>Juan David Montoya: "Soy ingeniero biológico de la Universidad Nacional, he realizado cursos en analítica de datos y desarrollo web a través de Coursera. Me apasiona la programación y también la Biotecnología, me divierto igual con una computadora como en un laboratorio<p>
+
+<p>Paula Vargas: "Soy ingeniera civil, actualmente estoy cursando una maestría en gestión de proyectos. Me gusta estar en constante aprendizaje y es por ello que estoy aprendiendo programación, ya que desde hace algún tiempo empecé a interesarme por el tema. Además, a lo largo de mi carrera me he dedicado al estudio de la construcción sostenible, especialmente la construcción con guadua y también me he involucrado en otros campos laborales.”<p>
