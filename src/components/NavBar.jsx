@@ -19,7 +19,7 @@ const NavBar = ({setModeResponsive, modeResponsive}) => {
           </span>
         </div>
       </div>
-      <div className="flex h-10 items-center text-gray-50 hidden sm:flex w-20">
+      <div className="flex h-10 items-center text-gray-50 hiden sm:flex w-20">
          <img className="h-15 w-100" src="/logo.png" alt="Workflow logo" />
           </div>
 
