@@ -18,7 +18,7 @@ const NavBar = ({setModeResponsive, modeResponsive}) => {
           </span>
         </div>
       </div>
-      <div className="flex h-10 items-center text-gray-50 hidden sm:flex">
+      <div className="flex h-10 items-center text-gray-50 hiden sm:flex">
           LOGO
           </div>
 
