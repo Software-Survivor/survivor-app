@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const NavBar = ({setModeResponsive, modeResponsive}) => {
   return (
     <div className="flex flex-row justify-between items-center shadow border-gray-100 bg-white absolute w-screen h-22 z-20">
-      <div className="flex h-10 text-gray-50 pl-10 items-center ">
+      <div className="flex h-10 pl-10 items-center text-gray-50">
         <button onClick={()=> setModeResponsive(!modeResponsive)}>
           <i className="fad fa-angle-double-left hover:text-tic-100"></i>
         </button>
@@ -23,7 +24,7 @@ const NavBar = ({setModeResponsive, modeResponsive}) => {
          <img className="h-15 w-100" src="/logo.png" alt="Workflow logo" />
           </div>
 
-      <div className="flex h-10 items-center text-gray-300 text-lg ">
+      <div className="flex h-10 items-center text-lg text-gray-50">
         <div className="flex bg-gray-200 w-10 h-6 mr-5 rounded-xl text-white items-center pl-1 hover:text-tic-100">
           <Link to="">
             <i className="fas fa-circle"></i>
