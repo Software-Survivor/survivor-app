@@ -11,8 +11,17 @@ module.exports = {
       "tic-75": "#985295",
       "tic-50": "#ba7eaf",
       "tic-250": "#e0b9d5",
+      "black":"#000",
+      "black-50":"##3a3a3a",
+      "white":"#fff",
     },
     extend: {
+      backgroundColor:{
+        "tic-100": "#892c7f",
+        "tic-75": "#985295",
+        "tic-50": "#ba7eaf",
+        "tic-250": "#e0b9d5",
+      },
       height: {
         21: "5.25rem",
         22: "5.5rem",
@@ -37,10 +46,25 @@ module.exports = {
         26: "6.50rem",
         27: "6.75rem",
       },
+      ringColor:{
+        "gray-100": "#393939",
+      "gray-75": "#585858",
+      "gray-50": "#8f8f8f",
+      "gray-25": "#f9f9f9",
+      "tic-100": "#892c7f",
+      "tic-75": "#985295",
+      "tic-50": "#ba7eaf",
+      "tic-250": "#e0b9d5",
+      },
+      fontFamily: ["Quicksand", "sans-serif"],
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      opacity: ['disabled'],
+      backgroundColor: ['disabled'],
+      textColor: ['disabled'],
+    },
   },
   plugins: [],
 };
