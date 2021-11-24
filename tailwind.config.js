@@ -37,6 +37,8 @@ module.exports = {
         25: "6.25rem",
         26: "6.50rem",
         27: "6.75rem",
+        29: "7.25rem",
+        30: "7.5rem",
       },
       margin: {
         21: "5.25rem",
@@ -57,6 +59,14 @@ module.exports = {
       "tic-250": "#e0b9d5",
       },
       fontFamily: ["Quicksand", "sans-serif"],
+      inset: {
+        '25': '6.25rem',
+        '26': '6.5rem',
+        '27': '6.75rem',
+        '29': '7.25rem',
+        '30': '7.5rem',
+        '31': '7.25rem',
+       },
     },
   },
   variants: {

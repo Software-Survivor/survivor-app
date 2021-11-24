@@ -1,6 +1,7 @@
 import React from "react";
 
 const Tables = ({ data }) => {
+  console.log("data", data)
   return (
     <div className="text-xs pb-1 divide-x divide-gray-500">
       <div className="bg-white rounded-lg shadow-md px-8 py-8 divide-y divide-gray-100">
