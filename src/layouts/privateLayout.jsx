@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 import { Outlet } from "react-router-dom";
@@ -13,6 +13,9 @@ const PrivateLayouth = () => {
   const {authToken, setToken, loadingAuth } = useAuth();
   const [validateToken, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(VALIDATE_TOKEN);
 
+  useEffect(() => {
+   validateToken();
+  }, [input])
   return (
     <div className="flex flex-col relative h-screen">
       <NavBar
