@@ -48,7 +48,7 @@ const IndexUsers = () => {
             </thead>
             <tbody>
               {data &&
-                data.Usuario.map((u) => {
+                data.Users.map((u) => {
                   return (
                     <tr key={u._id}>
                       <td className="py-4">{u.name}</td>

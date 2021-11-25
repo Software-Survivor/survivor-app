@@ -15,7 +15,7 @@ const DropDown = ({ label, name, defaultValue = "", required, options }) => {
       <span>{label}</span>
       <label
         htmlFor={name}
-        className="flex flex-col border rounded-sm mt-2 border-gray-75 h-9 pl-2 w-full"
+        className="flex flex-col border rounded-sm my-2 border-gray-75 h-9 pl-2 w-full"
       >
         <select
           required={required}

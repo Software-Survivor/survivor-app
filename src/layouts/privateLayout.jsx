@@ -3,10 +3,16 @@ import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 import { Outlet } from "react-router-dom";
 import Content from "../components/Content";
+import { useMutation } from "@apollo/client";
+import { useAuth } from "../context/authContext";
+import { VALIDATE_TOKEN } from "../graphql/auth/mutation";
 
-const LayoutAdmin = () => {
+const PrivateLayouth = () => {
   const [modeResponsive, setModeResponsive] = useState(false);
   const [itemsSidebar, setItemsSidebar] = useState(false);
+  const {authToken, setToken, loadingAuth } = useAuth();
+  const [validateToken, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(VALIDATE_TOKEN);
+
   return (
     <div className="flex flex-col relative h-screen">
       <NavBar
@@ -25,4 +31,4 @@ const LayoutAdmin = () => {
   );
 };
 
-export default LayoutAdmin;
+export default PrivateLayouth;
