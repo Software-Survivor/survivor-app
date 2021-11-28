@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import Input from "../../components/Input";
-import Button_1 from "../../components/buttons/Button_1";
+import ButtonLoading from "../../components/buttons/ButtonLoading";
 import useFormData from "../../hook/useFormData";
 import { LOGIN } from "../../graphql/auth/mutation";
 import { useMutation } from "@apollo/client";
@@ -11,7 +11,7 @@ const Login = () => {
   const navegate = useNavigate();
   const { setToken } = useAuth();
   const { form, formData, updateFormData } = useFormData();
-  const [login, { data: mutationData, loading: mutationLoading, error: mutationError }] = useMutation(LOGIN);
+  const [login, { data: mutationData, loading: mutationLoading}] = useMutation(LOGIN); //error: mutationError Usar para controlar errores
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ const Login = () => {
       <form onSubmit={submitForm} ref={form} onChange={updateFormData} >
         <Input type="email" label="Email" name="email" required />
         <Input type="password" label="Password" name="password" required />
-        <Button_1 nameButton="Login" type="submit" />
+        <ButtonLoading nameButton="Login" type="submit" loading={mutationLoading} />
       </form>
     </div>
   );

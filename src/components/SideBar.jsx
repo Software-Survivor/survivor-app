@@ -1,26 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import PrivateComponent from "./PrivateComponents";
 
-const ItemsSidebarRight = {
-  user: [
-    ["@", "itemuser1"],
-    ["@", "item_user2"],
-    ["@", "item_user3"],
-  ],
-  project: [
-    ["@", "item_project1"],
-    ["@", "item_project2"],
-    ["@", "item_project3"],
-  ],
-  dashboard: [
-    ["@", "item_dashboard1"],
-    ["@", "item_dashboard2"],
-    ["@", "item_dashboard3"],
-  ],
-};
-
-const SideBar = ({ setItemsSidebar, itemsSidebar }) => {
-  const [item, setItem] = useState("");
+const SideBar = ({ setItemsSidebar, movilResponsiveButton, setItem}) => {
 
   const sx = "32";
   const chats = (
@@ -78,16 +60,19 @@ const SideBar = ({ setItemsSidebar, itemsSidebar }) => {
   );
 
   return (
-    <div className="relative text-gray-75 flex">
-      <div className="flex-1 bg-white shadow-lg border-gray-50 w-27 rounded-xl z-10 hidden sm:flex h-full">
-        <div className="divide-y divide-gray-100 overflow-scroll text-5xl w-full">
-          <Items
-            icon={chats}
-            items="Dashboard"
-            setItemsSidebar={setItemsSidebar}
-            _id="dashboard"
-            setItem={setItem}
-          />
+    <div className={`${movilResponsiveButton ? "" : "hidden"} sm:flex flex-col bg-white w-27 h-screen rounded-lg shadow-lg rounded-xl`}>
+      {/* <div className="flex-1 bg-white shadow-lg border-gray-50 w-27 rounded-xl z-10 sm:flex h-full hidden"> */}
+      <div className="overflow-scroll">
+        <div className="divide-y divide-gray-100 text-5xl w-full">
+          <PrivateComponent rolesList={["ADMINISTRADOR"]}>
+            <Items
+              icon={chats}
+              items="Dashboard"
+              setItemsSidebar={setItemsSidebar}
+              _id="dashboard"
+              setItem={setItem}
+            />
+          </PrivateComponent>
           <Items
             icon={users}
             items="Usuarios"
@@ -104,7 +89,7 @@ const SideBar = ({ setItemsSidebar, itemsSidebar }) => {
           />
         </div>
       </div>
-      {itemsSidebar ? <SidebarRight item={item} /> : <></>}
+      
     </div>
   );
 };
@@ -120,32 +105,13 @@ const Items = ({ icon, items, setItemsSidebar, _id, setItem }) => {
       <div className="w-1 h-22 rounded-lg bg-tic-100"></div>
       <div className="flex flex-col justify-center items-center h-32 w-full p-2 hover:text-tic-100">
         <button onMouseEnter={() => ejct()}>
-          {" "}
           <Link to="/admin/user/index">{icon}</Link>
         </button>
         <span
           className="text-xs mt-2"
-          onMouseEnter={() => setItemsSidebar(false)}
         >
           {items}
         </span>
-      </div>
-    </div>
-  );
-};
-
-const SidebarRight = ({ item }) => {
-  return (
-    <div className="flex-1 shadow-lg inline-block bg-white rounded-r-xl top-0 px-4 h-full pt-10 text-gray-75">
-      <div className="flex flex-col px-2 py-2 w-52">
-        {ItemsSidebarRight[item].map((u) => {
-          return (
-            <div className="my-2 text-xs hover:text-tic-100">
-              <a className="mr-2">{u[0]}</a>
-              <a className="">{u[1]}</a>
-            </div>
-          );
-        })}
       </div>
     </div>
   );

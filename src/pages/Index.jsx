@@ -1,16 +1,23 @@
 import React from "react";
 import { useUser } from "../context/user";
 import { useDark } from "../context/dark";
-
+import { useNavigate } from "react-router";
 const Index = () => {
+  const navigate_ = useNavigate();
   const { userData } = useUser();
   const { modeDark, setModeDark } = useDark();
-  console.log(userData);
+  
+
+  const nave = () =>{
+    navigate_("/admin/user/index")
+  }
+
   return (
     <>
       <div>
         <div className={`${ modeDark ? "text-7xl bg-black font-mono text-white font-bold text-center mt-80": "text-7xl bg-blue-200 font-mono font-bold text-center mt-80" }`} >
           Hola Mundo!
+          <button onClick={()=>{nave()}}>ir a usuarios</button>
           <p className="text-red-300 text-2xl mt-2">
             useContex: {userData.data}
           </p>

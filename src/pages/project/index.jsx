@@ -2,13 +2,19 @@ import React, {useEffect} from 'react'
 import Header from "../../components/Header";
 import { useQuery } from '@apollo/client'
 import { GET_PROJECTS } from '../../graphql/project/queries';
+import alerts from '../../utils/iziToast/alerts';
 
 
 const IndexProject = () => {
     const {data, error, loading} = useQuery(GET_PROJECTS)
+    
     useEffect(() => {
-        console.log("data: ", data)
-    }, [data])
+      if (error) {
+        alerts.alertErrorMessage("Error consultando los usurios")
+      }
+    }, [error]);
+
+    if (loading) return <div>Cargando....</div>;
 
   return (
     <>

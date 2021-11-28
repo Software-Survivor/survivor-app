@@ -4,12 +4,12 @@ import { useParams } from "react-router";
 import { GET_USER } from "../../graphql/users/queries";
 import { EDIT_USER } from "../../graphql/users/mutation";
 import Input from "../../components/Input";
-import Button_1 from "../../components/buttons/Button_1";
+import ButtonLoading from "../../components/buttons/ButtonLoading";
 import DropDown from "../../components/DropDown";
 import Header from "../../components/Header";
 import useFormData from "../../hook/useFormData";
 import alerts from "../../utils/iziToast/alerts";
-import { Enum_Rol, Enum_Status } from "../../utils/enum";
+import { Enum_Status } from "../../utils/enum";
 
 const EditUser = () => {
   const { form, formData, updateFormData } = useFormData(null);
@@ -28,6 +28,12 @@ const EditUser = () => {
     { data: mutationData, loading: mutationLoading, error: mutationError },
   ] = useMutation(EDIT_USER);
 
+  useEffect(() => {
+    if (mutationData) {
+      alerts.alertSucees("Usuario modificado correctamente");
+    }
+  }, [mutationData]);
+
   const submitForm = (e) => {
     e.preventDefault();
     // console.log("formData, ", formData)
@@ -37,12 +43,6 @@ const EditUser = () => {
         ...formData,
       },
     })
-      .then((u) => {
-        alerts.alertSucees();
-      })
-      .catch((error) => {
-        alerts.alertErrorMessage(error);
-      });
   };
 
   useEffect(() => {
@@ -111,9 +111,10 @@ const EditUser = () => {
                 required={true}
                 options={Enum_Status}
               />
-              <Button_1
+              <ButtonLoading
                 nameButton="Guardar"
                 type="submit"
+                loading={mutationLoading}
                 disabled={Object.keys(formData).length === 0}
               />
             </form>

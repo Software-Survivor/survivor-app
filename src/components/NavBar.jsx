@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
+import { useAuth } from "../context/authContext";
+import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
-const NavBar = ({ setModeResponsive, modeResponsive, popupInfoProfile, setPopupInfoProfile }) => {
- 
+const NavBar = ({
+  popupInfoProfile,
+  setPopupInfoProfile,
+  setMovilResponsiveButton,
+  setResponsiveButton,
+  movilResponsiveButton,
+  responsiveButton,
+}) => {
   const searchSVG = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -11,9 +19,9 @@ const NavBar = ({ setModeResponsive, modeResponsive, popupInfoProfile, setPopupI
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="1"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       class="feather feather-search"
     >
       <circle cx="11" cy="11" r="8"></circle>
@@ -28,9 +36,9 @@ const NavBar = ({ setModeResponsive, modeResponsive, popupInfoProfile, setPopupI
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="1"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       class="feather feather-bell"
     >
       <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
@@ -45,9 +53,9 @@ const NavBar = ({ setModeResponsive, modeResponsive, popupInfoProfile, setPopupI
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      stroke-width="1"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       class="feather feather-settings"
     >
       <circle cx="12" cy="12" r="3"></circle>
@@ -56,12 +64,33 @@ const NavBar = ({ setModeResponsive, modeResponsive, popupInfoProfile, setPopupI
   );
   return (
     <>
-      <div className="flex flex-row justify-between items-center shadow border-gray-100 bg-white absolute w-full h-22 z-20 text-gray-50 text-xs">
+      {/* <div className="flex flex-row justify-between items-center shadow border-gray-100 bg-white absolute w-full h-22 z-20 text-gray-50 text-xs"> */}
+      <div className="fixed flex flex-row justify-between items-center bg-white w-full h-22 shadow z-20 text-gray-50 text-xs">
         <div className="flex h-10 pl-10 items-center ">
-          {!modeResponsive ? <button onClick={() => setModeResponsive(true)}>
-              <i className="fad fa-angle-double-left hover:text-tic-100"></i></button>:
-              <button onClick={() => setModeResponsive(false)}><i className="fad fa-angle-double-right hover:text-tic-100"></i></button>
-          }
+          {window.screen.width > 639 ? (
+            <></>
+          ) : (
+            <button
+              onClick={() => {
+                setMovilResponsiveButton(!movilResponsiveButton);
+              }}
+            >
+              {movilResponsiveButton ? (
+                <i className="fad fa-angle-double-left hover:text-tic-100"></i>
+              ) : (
+                <i className="fad fa-angle-double-right hover:text-tic-100"></i>
+              )}
+            </button>
+          )}
+          {window.screen.width < 639 ? (
+            <></>
+          ) : (
+            <ButtonResposive
+              responsiveButton={responsiveButton}
+              setResponsiveButton={setResponsiveButton}
+            />
+          )}
+
           <div className="pl-16 text-xs relative hidden sm:flex">
             <input
               type="text"
@@ -88,11 +117,15 @@ const NavBar = ({ setModeResponsive, modeResponsive, popupInfoProfile, setPopupI
             <span>Hi, Usuario</span>
           </div>
           <div className="">
-            <button className="bg-blue-200 rounded-full h-12 w-12 mr-10" onMouseEnter={()=>{setPopupInfoProfile(!popupInfoProfile)}}></button>
+            <button
+              className="bg-blue-200 rounded-full h-12 w-12 mr-10"
+              onMouseEnter={() => {
+                setPopupInfoProfile(!popupInfoProfile);
+              }}
+            ></button>
           </div>
         </div>
         {popupInfoProfile ? <PopupNavbar /> : <></>}
-        
       </div>
     </>
   );
@@ -101,17 +134,49 @@ const NavBar = ({ setModeResponsive, modeResponsive, popupInfoProfile, setPopupI
 const PopupNavbar = () => {
   return (
     <div className="flex flex-col bg-white w-44 absolute right-10 top-20 rounded-lg border border-gray-75 pt-2 pb-2">
-      <ItemsPopupNavbar name="Perfil" />
+      <li className="flex hover:bg-gray-100 items-center h-6 py-4 pl-3">
+        <span>Perfil</span>
+      </li>
       <div className="h-0.5 bg-gray-100 my-2"></div>
-      <ItemsPopupNavbar name="Cerrar" />
+      <Logouth />
     </div>
   );
 };
 
-const ItemsPopupNavbar = ({ name }) => {
+const Logouth = () => {
+  const { setToken } = useAuth();
+  const deleteToken = () => {
+    setToken(null);
+  };
   return (
-    <a className="flex hover:bg-gray-100 items-center h-6 py-4 pl-3">{name}</a>
+    <div
+      onClick={() => {
+        deleteToken();
+      }}
+    >
+      {" "}
+      <Link to="/auth/login">
+        <li className="flex hover:bg-gray-100 items-center h-6 py-4 pl-3">
+          <span>Cerrar</span>
+        </li>
+      </Link>
+    </div>
   );
 };
 
+const ButtonResposive = ({ responsiveButton, setResponsiveButton }) => {
+  return (
+    <div>
+      {!responsiveButton ? (
+        <button onClick={() => setResponsiveButton(true)}>
+          <i className="fad fa-angle-double-left hover:text-tic-100"></i>
+        </button>
+      ) : (
+        <button onClick={() => setResponsiveButton(false)}>
+          <i className="fad fa-angle-double-right hover:text-tic-100"></i>
+        </button>
+      )}
+    </div>
+  );
+};
 export default NavBar;

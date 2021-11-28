@@ -85,4 +85,11 @@ const alertWarning = (d) => {
   });
 };
 
-export default { alertSucees, alertError, alertWarning, alertErrorMessage  };
+const alerts = {
+  alertSucees, 
+  alertError, 
+  alertWarning, 
+  alertErrorMessage
+}
+
+export default alerts;

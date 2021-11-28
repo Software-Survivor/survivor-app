@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button_1 = ({ disabled, type, nameButton }) => {
+const ButtonLoading = ({ disabled, type, nameButton }) => { //loading => usar este estado para mostrar icono de espera
   return (
     <>
       <button
@@ -15,5 +15,5 @@ const Button_1 = ({ disabled, type, nameButton }) => {
   );
 };
 
-export default Button_1;
+export default ButtonLoading;
 

@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import Button_1 from "../../components/buttons/Button_1";
+import Button_1 from "../../components/buttons/ButtonLoading";
 import DropDown from "../../components/DropDown";
 import Input from "../../components/Input";
 import { Enum_Rol } from "../../utils/enum";

@@ -18,10 +18,12 @@ import AdminIndex from "./pages/AdminIndex";
 import { UserContext } from "./context/user";
 import { AuthContext } from "./context/authContext";
 import { DarkContext } from "./context/dark";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Register from "./pages/auth/register";
 import LayoutAuth from "./layouts/LayoutAuth";
 import Login from "./pages/auth/login";
+import jwt_decode from "jwt-decode";
+import Template from "./pages/TemplateLayouth";
 
 // const httpLink = createHttpLink({
 //   uri: "https://api-proyecta-tic.herokuapp.com/graphql"
@@ -31,11 +33,11 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = JSON.parse(localStorage.getItem('token'));
+  const token = JSON.parse(localStorage.getItem("token"));
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -50,12 +52,30 @@ function App() {
   const [userData, setUserData] = useState({ data: "testUserData" });
   const [modeDark, setModeDark] = useState(false);
   const [authToken, setAuthToken] = useState("");
+
   const setToken = (token) => {
     setAuthToken(token);
     if (token) {
       localStorage.setItem("token", JSON.stringify(token));
+    } else {
+      localStorage.removeItem("token");
     }
   };
+  useEffect(() => {
+    if (authToken) {
+      const decode = jwt_decode(authToken);
+      setUserData({
+        _id: decode._id,
+        name: decode.name,
+        lastname: decode.lastname,
+        email: decode.email,
+        identification: decode.identification,
+        rol: decode.rol,
+      });
+      console.log("Datos del usuario: ", userData);
+    }
+  }, [authToken]);
+
   return (
     <ApolloProvider client={client}>
       <AuthContext.Provider value={{ setToken, authToken, setAuthToken }}>
@@ -64,11 +84,13 @@ function App() {
             <BrowserRouter>
               <Routes>
                 <Route path="/" element={<Index />} />
+                <Route path="/template" element={<Template />} />
                 <Route path="/auth" element={<LayoutAuth />}>
                   <Route path="register" element={<Register />} />
                   <Route path="login" element={<Login />} />
                 </Route>
                 <Route path="/admin/index" element={<AdminIndex />} />
+                
                 <Route path="/admin" element={<PrivateLayouth />}>
                   <Route path="" element={<IndexAdmin />} />
                   <Route path="usuarios" element={<Users />} />
@@ -76,6 +98,7 @@ function App() {
                   <Route path="user/index" element={<IndexUsers />} />
                   <Route path="edit/user/:_id" element={<EditUser />} />
                 </Route>
+             
               </Routes>
             </BrowserRouter>
           </UserContext.Provider>
