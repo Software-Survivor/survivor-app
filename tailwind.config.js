@@ -14,6 +14,7 @@ module.exports = {
       "black":"#000",
       "black-50":"##3a3a3a",
       "white":"#fff",
+      "tic-green": "#82FF9E",
     },
     extend: {
       backgroundColor:{
@@ -21,6 +22,10 @@ module.exports = {
         "tic-75": "#985295",
         "tic-50": "#ba7eaf",
         "tic-250": "#e0b9d5",
+        "gray-a": "#393939",
+        "gray-b": "#585858",
+        "gray-c": "#8f8f8f",
+        "gray-d": "#f9f9f9",
       },
       height: {
         21: "5.25rem",
@@ -67,6 +72,21 @@ module.exports = {
         '30': '7.5rem',
         '31': '7.25rem',
        },
+      borderWidth:{
+        "0.5":"0.5px"
+      },
+      borderColor:{
+        "tic-100": "#892c7f",
+      "tic-75": "#985295",
+      "tic-50": "#ba7eaf",
+      "tic-25": "#e0b9d5",
+      
+
+      },
+      fontSize: {
+        "xxs":".5rem",
+        "2xxs":".25rem",
+      }
     },
   },
   variants: {

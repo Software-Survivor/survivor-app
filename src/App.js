@@ -10,8 +10,9 @@ import { setContext } from "@apollo/client/link/context";
 import Index from "./pages/Index";
 import IndexAdmin from "./pages/admin/IndexAdmin";
 import IndexUsers from "./pages/users";
-import IndexProject from "./pages/project";
+import IndexProject from "./pages/project/IndexProject";
 import Users from "./pages/admin/Users";
+import Card from "./components/card/Card";
 import EditUser from "./pages/users/EditUser";
 import PrivateLayouth from "./layouts/privateLayout";
 import AdminIndex from "./pages/AdminIndex";
@@ -90,13 +91,13 @@ function App() {
                   <Route path="login" element={<Login />} />
                 </Route>
                 <Route path="/admin/index" element={<AdminIndex />} />
-                
                 <Route path="/admin" element={<PrivateLayouth />}>
                   <Route path="" element={<IndexAdmin />} />
                   <Route path="usuarios" element={<Users />} />
                   <Route path="project/index" element={<IndexProject />} />
                   <Route path="user/index" element={<IndexUsers />} />
                   <Route path="edit/user/:_id" element={<EditUser />} />
+                  <Route path="card" element={<Card />} />
                 </Route>
              
               </Routes>
