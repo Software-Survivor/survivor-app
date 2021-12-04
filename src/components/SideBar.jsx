@@ -16,7 +16,7 @@ const SideBar = () => {
   );
 };
 
-const Items = ({ icon, items }) => {
+const Items = ({ icon, items, route }) => {
   return (
     <div className="flex flex-col justify-center items-center h-32 w-26 p-2 hover:text-tic-100 ">
       <Link to="">

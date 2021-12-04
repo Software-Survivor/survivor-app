@@ -1,11 +1,10 @@
 import "./styles/main.css";
+import './styles/tabla.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import IndexUsuarios from "./pages/usuarios/Index";
+import Index from './pages/Index'
+import IndexUsers from './pages/Users/Index'
 import IndexAdmin from "./pages/admin/IndexAdmin";
-import Users from "./pages/admin/Users";
 import LayoutAdmin from "./layouts/LayoutAdmin";
-import AdminIndex from "./pages/AdminIndex";
 import { UserContext } from "./context/user";
 import { DarkContext } from "./context/dark";
 import { useState } from "react";
@@ -19,12 +18,12 @@ import {
 // const httpLink = createHttpLink({
 //   uri: "https://api-proyecta-tic.herokuapp.com/graphql"
 // })
-const httpLink = createHttpLink({
+/* const httpLink = createHttpLink({
   uri: "http://localhost:4001/graphql",
 });
-
+ */
 const client = new ApolloClient({
-  uri: "httpLink",
+  uri: "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
 });
 
@@ -37,15 +36,11 @@ function App() {
         <UserContext.Provider value={{ userData, setUserData }}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<LayoutAdmin />} >
-                <Route path="" element={<Index />} />
-                <Route path="/usuarios" element={<IndexUsuarios />} />
-              </Route>
-              <Route path="/admin/index" element={<AdminIndex />} />
-              <Route path="/admin" element={<LayoutAdmin />}>
+              <Route path='/' element={<Index/>}/>
+              <Route path="/admin" element={< LayoutAdmin/>}>
                 <Route path="" element={<IndexAdmin />} />
-                <Route path="users" element={<Users />} />
               </Route>
+              <Route path='/usuarios' element={<IndexUsers/>}/>
             </Routes>
           </BrowserRouter>
         </UserContext.Provider>
