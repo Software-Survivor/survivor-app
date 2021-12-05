@@ -1,5 +1,4 @@
 import "./styles/main.css";
-import './styles/tailwind.css'
 import './styles/tabla.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from './pages/Index'

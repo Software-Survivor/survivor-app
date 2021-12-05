@@ -1,18 +1,60 @@
-import React from "react";
-import { useQuery } from "@apollo/client";
+import React, { useEffect } from "react";
+import { useQuery, useMutation } from "@apollo/client";
 import { GET_USER } from "../../graphql/users/queries";
 import { useParams, Link } from "react-router-dom";
+import ButtonLoading from "../../components/ButtonLoading";
+import DropDown from "../../components/Dropdown";
 import Input from "../../components/Input";
+import useFormData from "../../hook/useFormData";
+import alerts from "../../utils/alerts";
+import { EDIT_USER } from "../../graphql/users/mutations";
+import { Enum_StatusUsers } from "../../utils/enum";
 
 const EditUser = () => {
-    const { _id } = useParams();
-    const { data, error, loading } = useQuery(GET_USER, {
-        variables: {
-            _id,
-        },
-    });
+  const { form, formData, updateFormData } = useFormData(null);
 
-  console.log(data)
+  const { _id } = useParams();
+
+  const {
+    data: queryData,
+    error: queryError,
+    loading: queryLoading,
+  } = useQuery(GET_USER, {
+    variables: {
+      _id,
+    },
+  });
+
+  const [
+    editUser,
+    { data: mutationData, loading: mutationLoading, error: mutationError },
+  ] = useMutation(EDIT_USER);
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    delete formData.rol
+    editUser({
+      variables: { _id, ...formData},
+    });
+  };
+
+  console.log(queryData);
+
+  useEffect(() => {
+    if(mutationData){
+      alerts.alertSucees('Edición exitosa')
+    }
+  }, [mutationData]);
+
+  useEffect(() => {
+    if(mutationError){
+      alerts.alertErrorMessage('Error en la edición del usuario')
+    }
+    if(queryError)
+    alerts.alertErrorMessage('Error consultando el usuarios')
+  }, [queryError, mutationError]);
+
+  if (queryLoading) return <div>Loading...</div>;
 
   return (
     <div className="flew flex-col w-full h-full items-center justify-center p-10">
@@ -31,43 +73,43 @@ const EditUser = () => {
         <Input
           label="Nombre de la persona:"
           type="text"
-          name="nombre"
-          defaultValue={data.User.name}
+          name="name"
+          defaultValue={queryData.User.name}
           required={true}
         />
         <Input
           label="Apellido de la persona:"
           type="text"
-          name="apellido"
-          defaultValue={data.User.lastname}
+          name="lastname"
+          defaultValue={queryData.User.lastname}
           required={true}
         />
         <Input
           label="Correo de la persona:"
           type="email"
-          name="correo"
-          defaultValue={data.User.email}
+          name="email"
+          defaultValue={queryData.User.email}
           required={true}
         />
         <Input
           label="Identificación de la persona:"
           type="text"
-          name="identificacion"
-          defaultValue={data.User.identification}
+          name="identification"
+          defaultValue={queryData.User.identification}
           required={true}
         />
-         <DropDown
+        <DropDown
           label="Estado de la persona:"
-          name="estado"
-          defaultValue={data.User.state}
+          name="status"
+          defaultValue={queryData.User.status}
           required={true}
-          options={Enum_EstadoUsuario}
+          options={Enum_StatusUsers}
         />
-        <span>Rol del usuario: {data.User.rol}</span>
-        <ButtonLoading
-          disabled={Object.keys(formData).length === 0}
-          loading={mutationLoading}
-          text="Confirmar"
+        <span>Rol del usuario: {queryData.User.rol}</span>
+        <ButtonLoading 
+          disabled={Object.keys(formData).length===0} 
+          loading={mutationLoading} 
+          text="Confirmar" 
         />
       </form>
     </div>

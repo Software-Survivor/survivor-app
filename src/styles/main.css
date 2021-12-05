@@ -164,6 +164,10 @@ table {
   border-color: inherit; /* 2 */
 }
 
+.input {
+  @apply p-2 border border-indigo-200 focus:outline-none focus:border-indigo-800 rounded-md shadow-sm;
+}
+
 /*
 Forms
 =====
