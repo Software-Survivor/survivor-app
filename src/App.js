@@ -1,9 +1,11 @@
 import "./styles/main.css";
+import './styles/tailwind.css'
 import './styles/tabla.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from './pages/Index'
 import IndexUsers from './pages/Users/Index'
 import IndexAdmin from "./pages/admin/IndexAdmin";
+import EditUser from './pages/Users/Edit'
 import LayoutAdmin from "./layouts/LayoutAdmin";
 import { UserContext } from "./context/user";
 import { DarkContext } from "./context/dark";
@@ -41,6 +43,7 @@ function App() {
                 <Route path="" element={<IndexAdmin />} />
               </Route>
               <Route path='/usuarios' element={<IndexUsers/>}/>
+              <Route path='/usuarios/editar/:_id' element={<EditUser/>}/>
             </Routes>
           </BrowserRouter>
         </UserContext.Provider>

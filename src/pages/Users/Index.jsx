@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_USERS } from "../../graphql/users/queries";
+import alerts from "../../utils/alerts";
 import { Link } from "react-router-dom";
 
 
@@ -10,6 +11,12 @@ const IndexUsers = () => {
   useEffect(() => {
     console.log("Data servidor", data);
   }, [data]);
+
+  useEffect(() => {
+    if(error){
+        alerts.alertErrorMessage('Haocurrido un error con los usuarios')
+    }
+  }, [error]);
 
   return (
     <div>
@@ -38,11 +45,11 @@ const IndexUsers = () => {
                     <td>{u.identification}</td>
                     <td>{u.rol}</td>
                     <td>{u.status}</td>
-{/*                     <td>
+                    <td>
                       <Link to={`/usuarios/editar/${u._id}`}>
                         <i className="fas fa-pen text-yellow-600 hover:text-yellow-400 cursor-pointer" />
                       </Link>
-                    </td> */}
+                    </td>
                   </tr>
                 );
               })}
