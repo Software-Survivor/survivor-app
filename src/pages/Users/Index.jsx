@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/client";
 import { GET_USERS } from "../../graphql/users/queries";
 import alerts from "../../utils/alerts";
 import { Link } from "react-router-dom";
-import { Enum_Rol, Enum_StatusUsers } from "../../utils/enum";
+import { Enum_Rol, Enum_StatusUsers } from "../../utils/enums";
 
 
 const IndexUsers = () => {

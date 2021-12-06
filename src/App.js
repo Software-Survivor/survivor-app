@@ -5,6 +5,7 @@ import Index from './pages/Index'
 import IndexUsers from './pages/Users/Index'
 import IndexAdmin from "./pages/admin/IndexAdmin";
 import EditUser from './pages/Users/Edit'
+import Register from './pages/auth/Register'
 import LayoutAdmin from "./layouts/LayoutAdmin";
 import { UserContext } from "./context/user";
 import { DarkContext } from "./context/dark";
@@ -15,6 +16,7 @@ import {
   InMemoryCache,
   createHttpLink,
 } from "@apollo/client";
+import LayoutAuth from "./layouts/LayoutAuth";
 
 // const httpLink = createHttpLink({
 //   uri: "https://api-proyecta-tic.herokuapp.com/graphql"
@@ -24,7 +26,7 @@ import {
 });
  */
 const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri: "http://localhost:4001/graphql",
   cache: new InMemoryCache(),
 });
 
@@ -32,7 +34,7 @@ function App() {
   const [userData, setUserData] = useState({ data: "testUserData" });
   const [modeDark, setModeDark] = useState(false);
   return (
-    <ApolloProvider client={client}>
+    <ApolloProvider client={client}> 
       <DarkContext.Provider value={{ modeDark, setModeDark }}>
         <UserContext.Provider value={{ userData, setUserData }}>
           <BrowserRouter>
@@ -43,6 +45,9 @@ function App() {
               </Route>
               <Route path='/usuarios' element={<IndexUsers/>}/>
               <Route path='/usuarios/editar/:_id' element={<EditUser/>}/>
+              <Route path='/auth' element={<LayoutAuth/>}>
+                <Route path='registro' element={<Register/>}/>
+              </Route>
             </Routes>
           </BrowserRouter>
         </UserContext.Provider>

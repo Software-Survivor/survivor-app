@@ -8,7 +8,7 @@ import Input from "../../components/Input";
 import useFormData from "../../hook/useFormData";
 import alerts from "../../utils/alerts";
 import { EDIT_USER } from "../../graphql/users/mutations";
-import { Enum_StatusUsers } from "../../utils/enum";
+import { Enum_StatusUsers } from "../../utils/enums";
 
 const EditUser = () => {
   const { form, formData, updateFormData } = useFormData(null);
@@ -32,26 +32,25 @@ const EditUser = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    delete formData.rol
+    delete formData.rol;
     editUser({
-      variables: { _id, ...formData},
+      variables: { _id, ...formData },
     });
   };
 
   console.log(queryData);
 
   useEffect(() => {
-    if(mutationData){
-      alerts.alertSucees('Edición exitosa')
+    if (mutationData) {
+      alerts.alertSucees("Edición exitosa");
     }
   }, [mutationData]);
 
   useEffect(() => {
-    if(mutationError){
-      alerts.alertErrorMessage('Error en la edición del usuario')
+    if (mutationError) {
+      alerts.alertErrorMessage("Error en la edición del usuario");
     }
-    if(queryError)
-    alerts.alertErrorMessage('Error consultando el usuarios')
+    if (queryError) alerts.alertErrorMessage("Error consultando el usuarios");
   }, [queryError, mutationError]);
 
   if (queryLoading) return <div>Loading...</div>;
@@ -106,10 +105,10 @@ const EditUser = () => {
           options={Enum_StatusUsers}
         />
         <span>Rol del usuario: {queryData.User.rol}</span>
-        <ButtonLoading 
-          disabled={Object.keys(formData).length===0} 
-          loading={mutationLoading} 
-          text="Confirmar" 
+        <ButtonLoading
+          disabled={Object.keys(formData).length === 0}
+          loading={mutationLoading}
+          text="Confirmar"
         />
       </form>
     </div>
