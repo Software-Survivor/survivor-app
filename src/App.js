@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import IndexAdmin from "./pages/admin/IndexAdmin";
 import IndexUsers from "./pages/users";
 import IndexProject from "./pages/project/IndexProject";
+import CreateProject from "./pages/project/CreateProject";
 import Users from "./pages/admin/Users";
 import Card from "./components/card/Card";
 import EditUser from "./pages/users/EditUser";
@@ -95,6 +96,7 @@ function App() {
                   <Route path="" element={<IndexAdmin />} />
                   <Route path="usuarios" element={<Users />} />
                   <Route path="project/index" element={<IndexProject />} />
+                  <Route path="project/create" element={<CreateProject />} />
                   <Route path="user/index" element={<IndexUsers />} />
                   <Route path="edit/user/:_id" element={<EditUser />} />
                   <Route path="card" element={<Card />} />
