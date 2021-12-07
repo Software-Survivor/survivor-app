@@ -10,7 +10,7 @@ import Table from "../../components/Tables";
 import Card from "../../components/card/Card";
 
 const IndexUsers = () => {
-  const headTitle = ["ID", "Nombres", "Apellidos", "Identidicación", "Email", "Estado", "Rol"];
+  const headTitle = ["","ID", "Nombres", "Apellidos", "Identidicación", "Email", "Estado", "Rol"];
   const sx = "15";
   const edit = (
     <svg
