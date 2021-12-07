@@ -1,6 +1,6 @@
 import React from "react";
- 
-const Table = ({dataDb, subdata, headTitle}) => {
+
+const Table = ({ dataDb, subdata, headTitle }) => {
   const sx = "15";
   const edit = (
     <svg
@@ -57,7 +57,7 @@ const Table = ({dataDb, subdata, headTitle}) => {
   );
 
   return (
-     <div className="px-4">
+    <div className="px-4">
       <div className="block w-full overflow-x-auto">
         <table className="items-center bg-transparent w-full border-collapse">
           <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-d">
@@ -101,9 +101,7 @@ const Table = ({dataDb, subdata, headTitle}) => {
           </tbody>
         </table>
       </div>
-      </div>
- 
- 
+    </div>
   );
 };
 
