@@ -27,6 +27,7 @@ import Login from "./pages/auth/login";
 import jwt_decode from "jwt-decode";
 import Template from "./pages/TemplateLayouth";
 import Tables from "./components/Tables";
+import Example from "./pages/Example";
 
 // const httpLink = createHttpLink({
 //   uri: "https://api-proyecta-tic.herokuapp.com/graphql"
@@ -101,7 +102,7 @@ function App() {
                   <Route path="project/create" element={<CreateProject />} />
                   <Route path="user/index" element={<IndexUsers />} />
                   <Route path="edit/user/:_id" element={<EditUser />} />
-                  <Route path="card" element={<Card />} />
+                  <Route path="example" element={<Example/>} />
                 </Route>
              
               </Routes>

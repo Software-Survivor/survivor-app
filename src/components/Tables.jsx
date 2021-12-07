@@ -1,44 +1,6 @@
 import React from "react";
-// const headTitle = ["#", "Nombre", "Cel", "Mail", "Dirección", "Fecha", "Teléfono", "Fin"];
-//   const data = {
-//     subdata: [
-//       {
-//         id: "1",
-//         name: "Armagedón",
-//         cel: "11111111",
-//         mail: "arma@hotmail.com",
-//         direc: "11 11 11",
-//         date: "1111 11 11",
-//         phone: "11111111",
-//         end: "end1",
-//       },
-//       {
-//         id: "2",
-//         name: "Seus",
-//         cel: "2222222",
-//         mail: "seus@hotmail.com",
-//         direc: "22 22 22",
-//         date: "2222 22 22",
-//         phone: "22222222",
-//         end: "end2",
-//       },
-//       {
-//         id: "3",
-//         name: "Andromeda",
-//         cel: "33333333",
-//         mail: "andro@hotmail.com",
-//         direc: "33 33 33",
-//         date: "3333 33 33",
-//         phone: "333333333",
-//         end: "end3",
-//       },
-//     ],
-//   };
-
  
 const Table = ({dataDb, subdata, headTitle}) => {
-  
-
   const sx = "15";
   const edit = (
     <svg
@@ -95,10 +57,9 @@ const Table = ({dataDb, subdata, headTitle}) => {
   );
 
   return (
-    <div className="text-xs pb-1 divide-x divide-gray-500">
-      <div className="bg-white rounded-lg shadow-md px-8 py-8 divide-y divide-gray-100 overflow-x-auto">
-        <span className="text-lg text-gra">subtitulo</span>
-        <table className="my-4 table-auto w-full text-left divide-y divide-gray-100">
+     <div className="px-4">
+      <div className="block w-full overflow-x-auto">
+        <table className="items-center bg-transparent w-full border-collapse">
           <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-d">
             <tr>
               {headTitle.map((data) => {
@@ -140,7 +101,9 @@ const Table = ({dataDb, subdata, headTitle}) => {
           </tbody>
         </table>
       </div>
-    </div>
+      </div>
+ 
+ 
   );
 };
 
@@ -163,3 +126,39 @@ const Td = ({ u, keydata }) => {
 };
 
 export default Table;
+
+// const headTitle = ["#", "Nombre", "Cel", "Mail", "Dirección", "Fecha", "Teléfono", "Fin"];
+//   const data = {
+//     subdata: [
+//       {
+//         id: "1",
+//         name: "Armagedón",
+//         cel: "11111111",
+//         mail: "arma@hotmail.com",
+//         direc: "11 11 11",
+//         date: "1111 11 11",
+//         phone: "11111111",
+//         end: "end1",
+//       },
+//       {
+//         id: "2",
+//         name: "Seus",
+//         cel: "2222222",
+//         mail: "seus@hotmail.com",
+//         direc: "22 22 22",
+//         date: "2222 22 22",
+//         phone: "22222222",
+//         end: "end2",
+//       },
+//       {
+//         id: "3",
+//         name: "Andromeda",
+//         cel: "33333333",
+//         mail: "andro@hotmail.com",
+//         direc: "33 33 33",
+//         date: "3333 33 33",
+//         phone: "333333333",
+//         end: "end3",
+//       },
+//     ],
+//   };
