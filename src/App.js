@@ -26,6 +26,7 @@ import LayoutAuth from "./layouts/LayoutAuth";
 import Login from "./pages/auth/login";
 import jwt_decode from "jwt-decode";
 import Template from "./pages/TemplateLayouth";
+import Tables from "./components/Tables";
 
 // const httpLink = createHttpLink({
 //   uri: "https://api-proyecta-tic.herokuapp.com/graphql"
@@ -87,6 +88,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/template" element={<Template />} />
+                <Route path="/table" element={<Tables />} />
                 <Route path="/auth" element={<LayoutAuth />}>
                   <Route path="register" element={<Register />} />
                   <Route path="login" element={<Login />} />

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import alerts from "../../utils/iziToast/alerts";
 import { Enum_Rol } from "../../utils/enum";
 import { Enum_Status } from "../../utils/enum";
+import Table from "../../components/Tables";
 
 const IndexUsers = () => {
   const sx = "15";
@@ -46,7 +47,8 @@ const IndexUsers = () => {
       <div className="text-xs pb-1 divide-x divide-gray-500">
         <div className="bg-white rounded-lg shadow-md px-8 py-8 divide-y divide-gray-100">
           <span className="text-lg text-gra">Listado</span>
-          <table className="my-4 table-fixed w-full text-left divide-y divide-gray-100">
+          <Table/>
+          {/* <table className="my-4 table-fixed w-full text-left divide-y divide-gray-100">
             <thead>
               <tr>
                 <th className="py-4">Nombre</th>
@@ -83,7 +85,7 @@ const IndexUsers = () => {
                 <div>no autorizado</div>
               )}
             </tbody>
-          </table>
+          </table> */}
         </div>
       </div>
     </>
