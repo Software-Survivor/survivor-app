@@ -6,9 +6,11 @@ import Line from "../../components/Line";
 import { useQuery } from "@apollo/client";
 import { GET_PROJECTS } from "../../graphql/project/queries";
 import { GET_PROJECT_BY_ID } from "../../graphql/project/queries";
+import { Link } from "react-router-dom";
+import ButtonRedirect from "../../components/buttons/ButtonRedirect";
 
 const IndexProject = () => {
-  const [_id, setId] = useState("6195c80cc3545191cd21bf0a");
+  const [_id, setId] = useState("");
   const { data, error, loading } = useQuery(GET_PROJECTS);
   const {
     data: dataByID,
@@ -42,8 +44,31 @@ const IndexProject = () => {
       <circle cx="12" cy="12" r="10"></circle>
     </svg>
   );
+  const sx = "15";
+  const edit = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={sx}
+      height={sx}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="feather feather-edit"
+    >
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+    </svg>
+  );
   return (
+    <>
+    <div className="flex mx-4 justify-end">
+          <ButtonRedirect nameButton="Nuevo" redirect="/admin/project/create" />
+        </div>
     <div className="flex flex-col md:flex-row text-md ">
+      
       <div className="flex-1 pb-1 m-0.5">
         <Card>
           <TitleCard title="Listado" />
@@ -56,6 +81,7 @@ const IndexProject = () => {
                 <th className="py-4">Presupuesto</th>
                 <th className="py-4">Etapa</th>
                 <th className="py-4">Estado</th>
+                <th className="py-4">Op.</th>
               </tr>
             </thead>
             <tbody>
@@ -74,6 +100,9 @@ const IndexProject = () => {
                       <td className="py-4">$ {u.budget}</td>
                       <td className="py-4">{u.stageProject.toLowerCase()}</td>
                       <td className="py-4">{u.statusProject.toLowerCase()}</td>
+                      <td className="flex py-4 justify-center">
+                        <Link to={`/admin/edit/project/${u._id}`}><span>{edit}</span></Link>
+                      </td>
                     </tr>
                   );
                 })}
@@ -115,7 +144,7 @@ const IndexProject = () => {
             <div className="flex flex-row items-center">
               <div>
                 <span className="flex text-sm bg-gray-100 h-6 py-1 px-4 rounded-xl mt-4">
-                  Juan Andres Rozo
+                {dataByID && dataByID.DetailProject.leader["name"] + " " + dataByID.DetailProject.leader["lastname"]}
                 </span>
                 <span className="text-xxs pl-4">Líder</span>
               </div>
@@ -194,6 +223,7 @@ const IndexProject = () => {
         </Card>
       </div>
     </div>
+  </>
   );
 };
 

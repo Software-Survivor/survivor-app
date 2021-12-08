@@ -48,7 +48,7 @@ const PrivateLayouth = () => {
   if (mutationLoading || loadingAuth) return <div>Loading...</div>;
 
   return (
-    <PrivateRoute rolesList={["ADMINISTRADOR"]}>
+    
       <div className="relative flex flex-col h-screen">
         <NavBar
           popupInfoProfile={popupInfoProfile}
@@ -78,7 +78,7 @@ const PrivateLayouth = () => {
           </div>
         </div>
       </div>
-    </PrivateRoute>
+   
   );
 };
 

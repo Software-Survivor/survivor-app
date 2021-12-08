@@ -6,16 +6,29 @@ const CREATE_PROJECT = gql`
     $budget: Float!
     $leader: String!
     $objective: [inputObjective]
+    $startDate: Date!
+    $endDate: Date!
   ) {
     createProject(
       nameProject: $nameProject
       budget: $budget
       leader: $leader
       objective: $objective
+      startDate: $startDate
+      endDate: $endDate
     ) {
       _id
       nameProject
       budget
+    }
+  }
+`;
+
+const EDIT_PROJECT = gql`
+  mutation EditProject($_id: String!, $fields: fieldsProject!) {
+    editProject(_id: $_id, fields: $fields) {
+      _id
+      nameProject
     }
   }
 `;
@@ -28,4 +41,4 @@ const CREATE_OBJECTIVE = gql`
   }
 `;
 
-export { CREATE_PROJECT, CREATE_OBJECTIVE };
+export { CREATE_PROJECT, CREATE_OBJECTIVE, EDIT_PROJECT };

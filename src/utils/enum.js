@@ -9,3 +9,22 @@ export const Enum_Status = {
     AUTORIZADO: "Autorizado",
     NO_AUTORIZADO: "No autorizado",
 };
+
+export const Enum_ProjectStatus = {
+    ACTIVO:"Activo",
+    INACTIVO: "Inactivo",
+
+};
+export const Enum_ProjectStage = {
+    INICIADO: "Iniciado",
+    EN_DESARROLLO: "En desarrollo",
+    TERMINADO: "Terminado",
+    NULO: 'Nulo'
+};
+
+export const Enum_ObjetiveType = {
+    GENERAL: "General",
+    ESPECIFICO: "Específico",
+
+}
+

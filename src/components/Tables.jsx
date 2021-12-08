@@ -102,8 +102,6 @@ const Table = ({dataDb, subdata, headTitle}) => {
         </table>
       </div>
       </div>
- 
- 
   );
 };
 
