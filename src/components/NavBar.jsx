@@ -1,6 +1,8 @@
 import React from "react";
 import { useAuth } from "../context/authContext";
 import { Link } from "react-router-dom";
+import { useUser } from "../context/user";
+import useFormData from "../hook/useFormData";
 // import { Link } from "react-router-dom";
 
 const NavBar = ({
@@ -11,6 +13,7 @@ const NavBar = ({
   movilResponsiveButton,
   responsiveButton,
 }) => {
+  const {userData} = useUser();
   const searchSVG = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +117,7 @@ const NavBar = ({
           <div className="mr-3 hover:text-tic-100">{settingSVG}</div>
           <div className="mr-3 hover:text-tic-100">{bellSVG}</div>
           <div className="text-sm mr-2">
-            <span>Hi, Usuario</span>
+            <span>Hi, {userData.name}</span>
           </div>
           <div className="">
             <button

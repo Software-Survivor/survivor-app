@@ -48,12 +48,14 @@ const GET_PROJECT_BY_ID = gql`
         }
       }
       inscription {
+        _id
         dateStart
         dateEnd
         student {
           name
           lastname
         }
+        statusInscription
       }
       objective {
         description
