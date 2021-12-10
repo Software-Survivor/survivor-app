@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 import SidebarBarRight from "../components/SidebarBarRight";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Content from "../components/Content";
 import { useMutation } from "@apollo/client";
 import { useAuth } from "../context/authContext";
@@ -17,7 +17,7 @@ const PrivateLayouth = () => {
   const [movilResponsiveButton, setMovilResponsiveButton] = useState(false);
   const [itemsSidebar, setItemsSidebar] = useState(false);
   const [popupInfoProfile, setPopupInfoProfile] = useState(false);
-  const { setToken } = useAuth(); //authToken => Incluir para monitorizar el estado actual del token
+  const { setToken, authToken } = useAuth(); //authToken => Incluir para monitorizar el estado actual del token
   const [loadingAuth, setLoadingAuth] = useState(true);
   const [
     refreshToken,
@@ -41,10 +41,19 @@ const PrivateLayouth = () => {
     }
   }, [mutationData, setToken, loadingAuth, navigate]);
 
+  useEffect(() => {
+    console.log("Token actual", authToken);
+  }, [authToken]);
+
+  if (!authToken) {
+    navigate('/auth/login')
+  }
+
   const MouseEnter = () => {
     setItemsSidebar(false);
     setPopupInfoProfile(false);
   };
+
   if (mutationLoading || loadingAuth) return <div>Loading...</div>;
 
   return (
@@ -58,22 +67,29 @@ const PrivateLayouth = () => {
           movilResponsiveButton={movilResponsiveButton}
           setResponsiveButton={setResponsiveButton}
           setMovilResponsiveButton={setMovilResponsiveButton}
-
         />
         <div className="flex flex-row bg-gray-50 mt-22 overflow-hidden z-10">
-          {responsiveButton ? <></> : <SideBar movilResponsiveButton={movilResponsiveButton} setItemsSidebar={setItemsSidebar} setItem={setItem}
-             /> }
-      
+          {responsiveButton ? (
+            <></>
+          ) : (
+            <SideBar
+              movilResponsiveButton={movilResponsiveButton}
+              setItemsSidebar={setItemsSidebar}
+              setItem={setItem}
+            />
+          )}
+
           {itemsSidebar ? <SidebarBarRight item={item} /> : <></>}
           <div
             className="bg-gray-50 w-full flex flex-col"
             onMouseEnter={() => {
               MouseEnter();
-            }} >
-          <div className="overflow-scroll">
-            <Content>
-              <Outlet />
-            </Content>
+            }}
+          >
+            <div className="overflow-scroll">
+              <Content>
+                <Outlet />
+              </Content>
             </div>
           </div>
         </div>

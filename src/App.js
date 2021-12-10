@@ -94,17 +94,13 @@ function App() {
                   <Route path="register" element={<Register />} />
                   <Route path="login" element={<Login />} />
                 </Route>
-                <Route path="/admin/index" element={<AdminIndex />} />
                 <Route path="/admin" element={<PrivateLayouth />}>
                   <Route path="" element={<IndexAdmin />} />
-                  <Route path="usuarios" element={<Users />} />
-                  <Route path="project/index" element={<IndexProject />} />
-                  <Route path="project/create" element={<CreateProject />} />
-                  <Route path="user/index" element={<IndexUsers />} />
-                  <Route path="edit/user/:_id" element={<EditUser />} />
-                  <Route path="example" element={<Example/>} />
+                  <Route path="projects/" element={<IndexProject />} />
+                  <Route path="projects/create" element={<CreateProject />} />
+                  <Route path="users/" element={<IndexUsers />} />
+                  <Route path="users/edit/:_id" element={<EditUser />} />
                 </Route>
-             
               </Routes>
             </BrowserRouter>
           </UserContext.Provider>

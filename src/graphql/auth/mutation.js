@@ -26,21 +26,21 @@ const REGISTER = gql`
 `;
 
 const LOGIN = gql`
- mutation Login($email: String!, $password: String!) {
-  login(email: $email, password: $password) {
-    token
-    error
+  mutation Login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      error
+    }
   }
-}
 `;
 
 const REFRESH_TOKEN = gql`
-mutation RefreshToken {
-  refreshToken {
-    token
-    error
+  mutation RefreshToken {
+    refreshToken {
+      token
+      error
+    }
   }
-}
 `;
 
 export { REGISTER, LOGIN, REFRESH_TOKEN };

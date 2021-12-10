@@ -6,8 +6,10 @@ import { LOGIN } from "../../graphql/auth/mutation";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/authContext";
+import { Link } from 'react-router-dom'
 
 const Login = () => {
+
   const navegate = useNavigate();
   const { setToken } = useAuth();
   const { form, formData, updateFormData } = useFormData();
@@ -24,7 +26,7 @@ const Login = () => {
     if(mutationData){
       if(mutationData.login.token){
         setToken(mutationData.login.token);
-        navegate("/");
+        navegate("/admin/users");
       }
     }
   }, [mutationData, setToken, navegate]);
@@ -39,6 +41,10 @@ const Login = () => {
         <Input type="password" label="Password" name="password" required />
         <ButtonLoading nameButton="Login" type="submit" loading={mutationLoading} />
       </form>
+      <span>¿No tienes una cuenta?</span>
+      <Link to='/auth/register'>
+        <span className='text-blue-700'>Regístrate</span>
+      </Link>
     </div>
   );
 };

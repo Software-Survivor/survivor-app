@@ -29,7 +29,7 @@ const Register = () => {
     if(mutationData){
       if(mutationData.register.token){
         setToken(mutationData.register.token);
-        navegate("/");
+        navegate("/admin/users");
       }
     }
   }, [mutationData, setToken, navegate]);
@@ -47,11 +47,10 @@ const Register = () => {
           name="rol"
           required={true}
           options={Enum_Rol}
-          disable={Object.keys(formData).length === 0}
         />
         <Input type="text" label="Email" name="email" required />
         <Input type="password" label="Contraseña" name="password" required />
-        <Button_1 nameButton="Registrar" type="submit" />
+        <Button_1 nameButton="Registrar" type="submit" disable={Object.keys(formData).length === 0}/>
       </form>
     </div>
   );

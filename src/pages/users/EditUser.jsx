@@ -13,7 +13,7 @@ import { Enum_Status } from "../../utils/enum";
 
 const EditUser = () => {
   const { form, formData, updateFormData } = useFormData(null);
-  const  _id  = "618ef7a43cceedc9c449ae6a"
+  const { _id } = useParams();
   const {
     data: queryData,
     error: queryError,
@@ -22,7 +22,7 @@ const EditUser = () => {
     variables: { _id },
   });
 
-  console.log("data: ", queryData)
+  console.log("data: ", queryData);
   const [
     editUser,
     { data: mutationData, loading: mutationLoading, error: mutationError },
@@ -42,7 +42,7 @@ const EditUser = () => {
         _id,
         ...formData,
       },
-    })
+    });
   };
 
   useEffect(() => {
