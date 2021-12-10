@@ -15,7 +15,7 @@ import DropDown from "../../components/DropDown";
 import { Enum_ProjectStatus, Enum_ProjectStage } from "../../utils/enum";
 import Header from "../../components/Header";
 import alerts from "../../utils/iziToast/alerts";
-import { Link } from "react-router-dom";
+
 
 const EditProject = () => {
   const { form, formData, updateFormData } = useFormData(null);
@@ -77,53 +77,52 @@ const EditProject = () => {
     return newData;
   };
 
-  console.log("listIdInscrip", listIdInscrip)
-  
-  console.log("formData", formData)
+  // console.log("listIdInscrip", listIdInscrip);
+
+  // console.log("formData", formData);
 
   const submitForm = (e) => {
-    console.log("mixData", mixData()["stageProject"])
     e.preventDefault();
-    if (formData["statusProject"] === "ACTIVO") {
-      console.log(
-        "Ejecutar mutación en las incripciones, para agregar la fecha actual a todos las incripciones"
-      );
+    const mixData_ = mixData();
+    if (
+      formData["statusProject"] === "ACTIVO" &&
+      formData["stageProject"] === "NULO"
+    ) {
+      mixData_["stageProject"] = "INICIADO";
+      const yourDate = new Date(Date.now());
+      mixData_["startDate"] = yourDate.toISOString().split()[0];
     }
     if (formData["statusProject"] === "INACTIVO") {
-        
       //Si cambia el estado del proyecto a estado inactivo, todas las fechas de finalización del las inscripcines asociadas a ese proyecto y que esten vacias, quedan automaticamente con la fecha actual.
-      listIdInscrip.map((u)=>{
+      listIdInscrip.map((u) => {
         editInscriptionEndDate({ variables: { _id: u } });
-      })
-     }
-    if (mixData()["stageProject"] === "TERMINADO") {
-        // Si la fase del proyecto cambia a terminado, el estado cambia a inactivo
-      const { budget, endDate, nameProject, stageProject, startDate, ...rest } =
-        mixData();
-      const { statusProject, ...rest_ } = mixData();
-      const statusP = { statusProject: Enum_ProjectStatus.INACTIVO };
-      const DATA = { ...statusP, ...rest_ };
+      });
+    }
+    if (mixData_["stageProject"] === "TERMINADO") {
+      // Si la fase del proyecto cambia a terminado, el estado cambia a inactivo
+      mixData_["statusProject"] = "INACTIVO";
+      const yourDate = new Date(Date.now());
+      mixData_["endDate"] = yourDate.toISOString().split()[0];
 
       editProject({
         variables: {
           _id,
-          fields: DATA,
+          fields: mixData_,
         },
       });
-      listIdInscrip.map((u)=>{
+      listIdInscrip.map((u) => {
         editInscriptionEndDate({ variables: { _id: u } });
-      })
-
+      });
     } else {
       editProject({
         variables: {
           _id,
-          fields: mixData(),
+          fields: mixData_,
         },
       });
-    
     }
   };
+
   useEffect(() => {
     if (mutationData) {
       alerts.alertSucees("Usuario modificado correctamente");
