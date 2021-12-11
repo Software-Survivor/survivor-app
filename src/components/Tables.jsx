@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
  
-const Table = ({dataDb, subdata, headTitle}) => {
+const Table = ({dataDb, subdata, headTitle, path}) => {
   const sx = "15";
   const edit = (
     <svg
@@ -87,7 +88,9 @@ const Table = ({dataDb, subdata, headTitle}) => {
                             {view}
                           </a>
                           <a href="" className="px-1 hover:text-tic-100">
+                          <Link to={`/admin/edit/${path}/${u._id}`}>
                             {edit}
+                            </Link>
                           </a>
                           <a href="" className="px-1 hover:text-tic-100">
                             {trash}

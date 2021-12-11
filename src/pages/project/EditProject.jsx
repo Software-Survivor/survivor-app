@@ -54,43 +54,18 @@ const EditProject = () => {
 
   const listIdInscrip = listIdInscriptionsBYProjects();
 
-  const destruturingOnlyBudget = () => {
-    const {
-      nameProject,
-      startDate,
-      endDate,
-      stageProject,
-      statusProject,
-      ...data
-    } = formData;
-    const rest = { budget: parseFloat(data.budget) };
-    return rest;
-  };
-
-  const destruturingOnlyRest = () => {
-    const { budget, ...rest } = formData;
-    return rest;
-  };
-
-  const mixData = () => {
-    const newData = { ...destruturingOnlyBudget(), ...destruturingOnlyRest() };
-    return newData;
-  };
-
   // console.log("listIdInscrip", listIdInscrip);
-
-  // console.log("formData", formData);
-
   const submitForm = (e) => {
     e.preventDefault();
-    const mixData_ = mixData();
+    formData["budget"]=parseFloat(formData["budget"]);
     if (
       formData["statusProject"] === "ACTIVO" &&
       formData["stageProject"] === "NULO"
     ) {
-      mixData_["stageProject"] = "INICIADO";
+      formData["stageProject"] = "INICIADO";
       const yourDate = new Date(Date.now());
-      mixData_["startDate"] = yourDate.toISOString().split()[0];
+      formData["startDate"] = yourDate.toISOString().split()[0];
+      console.log("formData", formData);
     }
     if (formData["statusProject"] === "INACTIVO") {
       //Si cambia el estado del proyecto a estado inactivo, todas las fechas de finalización del las inscripcines asociadas a ese proyecto y que esten vacias, quedan automaticamente con la fecha actual.
@@ -98,16 +73,16 @@ const EditProject = () => {
         editInscriptionEndDate({ variables: { _id: u } });
       });
     }
-    if (mixData_["stageProject"] === "TERMINADO") {
+    if (formData["stageProject"] === "TERMINADO") {
       // Si la fase del proyecto cambia a terminado, el estado cambia a inactivo
-      mixData_["statusProject"] = "INACTIVO";
+      formData["statusProject"] = "INACTIVO";
       const yourDate = new Date(Date.now());
-      mixData_["endDate"] = yourDate.toISOString().split()[0];
+      formData["endDate"] = yourDate.toISOString().split()[0];
 
       editProject({
         variables: {
           _id,
-          fields: mixData_,
+          fields: formData,
         },
       });
       listIdInscrip.map((u) => {
@@ -117,10 +92,10 @@ const EditProject = () => {
       editProject({
         variables: {
           _id,
-          fields: mixData_,
+          fields: formData,
         },
       });
-    }
+    } 
   };
 
   useEffect(() => {
@@ -175,33 +150,8 @@ const EditProject = () => {
               defaultValue={queryData && queryData.DetailProject.budget}
             />
           </div>
-        </div>
-
-        <div className="flex flex-row">
-          <div className="flex-1 mr-1">
-            <Input
-              type="date"
-              name="startDate"
-              label="Fecha inicio"
-              defaultValue={
-                queryData && queryData.DetailProject.startDate === null
-                  ? ""
-                  : queryData.DetailProject.startDate.slice(0, 10)
-              }
-            />
-          </div>
-          <div className="flex-1 mr-1">
-            <Input
-              type="date"
-              name="endDate"
-              label="Fecha Fin"
-              defaultValue={
-                queryData && queryData.DetailProject.endDate === null
-                  ? ""
-                  : queryData.DetailProject.endDate.slice(0, 10)
-              }
-            />
-          </div>
+       
+        
         </div>
 
         <div className="flex flex-row">

@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { useUser } from "../../context/user";
 import Card from "../../components/card/Card";
 import CardSmall from "../../components/card/CardSmall";
 import TitleCard from "../../components/card/TitleCard";
 import Line from "../../components/Line";
 import { useQuery } from "@apollo/client";
-import { GET_PROJECTS, GET_PROJECT_BY_ID } from "../../graphql/project/queries";
+import {
+  GET_PROJECTS,
+  GET_PROJECT_BY_ID,
+  GET_PROJECTS_BY_LEADER,
+} from "../../graphql/project/queries";
 import { EDIT_STAGE_PROJECT } from "../../graphql/project/mutation";
 import { Link } from "react-router-dom";
 import ButtonRedirect from "../../components/buttons/ButtonRedirect";
@@ -12,7 +17,7 @@ import PrivateComponent from "../../components/PrivateComponents";
 import { CREATE_INSCRIPTION } from "../../graphql/incriptions/mutation";
 import { CREATE_ADVANCEMENT } from "../../graphql/advancement/mutation";
 import { useMutation } from "@apollo/client";
-import { useUser } from "../../context/user";
+
 import alerts from "../../utils/iziToast/alerts";
 import Input from "../../components/Input";
 import useFormData from "../../hook/useFormData";
@@ -25,17 +30,35 @@ import {
 } from "../../utils/enum";
 
 const IndexProject = () => {
+  const { userData } = useUser();
+  console.log("userData: ", userData._id)
   const [viewForm, setViewForm] = useState(false);
   const { form, formData, updateFormData } = useFormData();
   const [_id, setId] = useState("");
-  const { userData } = useUser();
-  // console.log("Id usuario activo: ", userData._id);
   const { data, error, loading } = useQuery(GET_PROJECTS);
+  var listProjectByLeader = {}
+
+  const filter = () =>{
+    var jj = []
+    data.ListProjects.map((u)=>{
+      if(u.leader._id === userData._id){
+        jj.push(u)
+      }
+    })
+    return jj
+
+  }
+
+  if(data){
+    listProjectByLeader["ListProjects"] = filter();
+  }
+
   const {
     data: dataByID,
     errorByID,
     loadingByID,
   } = useQuery(GET_PROJECT_BY_ID, { variables: { _id } });
+
   const [
     createIncription,
     {
@@ -76,10 +99,10 @@ const IndexProject = () => {
 
   const listIdInscrip = statusLastIncriptions();
 
-  console.log("dataByID", dataByID);
+  // console.log("dataByID", dataByID);
   console.log("data", data);
-  console.log("UserData", userData );
-  console.log("listIdInscrip", listIdInscrip );
+  // console.log("UserData", userData );
+  // console.log("listIdInscrip", listIdInscrip );
 
   useEffect(() => {
     if (mutationDataInscription) {
@@ -209,46 +232,22 @@ const IndexProject = () => {
                   </PrivateComponent>
                 </tr>
               </thead>
-              <tbody>
-                {data &&
-                  data.ListProjects.map((u) => {
-                    return (
-                      <tr
-                        key={u._id}
-                        className="hover:bg-gray-50"
-                        onClick={() => {
-                          setId(u._id);
-                        }}
-                      >
-                        <td className="py-4">{u.nameProject}</td>
-                        <td className="py-4">
-                          {u.startDate === null
-                            ? "Pendiente"
-                            : u.startDate.slice(0, 10)}
-                        </td>
-                        <td className="py-4">$ {u.budget}</td>
-                        <td className="py-4">{u.stageProject.toLowerCase()}</td>
-                        <td className="py-4">
-                          {u.statusProject.toLowerCase()}
-                        </td>
-                        {u.stageProject === "TERMINADO" &&
-                        userData.rol !== Enum_Rol.ADMINISTRADOR ? (
-                          <></>
-                        ) : (
-                          <PrivateComponent
-                            rolesList={["ADMINISTRADOR", "LIDER"]}
-                          >
-                            <td className="flex py-4 justify-center">
-                              <Link to={`/admin/edit/project/${u._id}`}>
-                                <span>{edit}</span>
-                              </Link>
-                            </td>
-                          </PrivateComponent>
-                        )}
-                      </tr>
-                    );
-                  })}
-              </tbody>
+              
+              {userData.rol === "LIDER" ? <Table
+                  data={listProjectByLeader}
+                  setId={setId}
+                  userData={userData}
+                  edit={edit}
+                />:
+                <Table
+                  data={data}
+                  setId={setId}
+                  userData={userData}
+                  edit={edit}
+                />}
+             
+                
+            
             </table>
           </Card>
         </div>
@@ -319,9 +318,8 @@ const IndexProject = () => {
               <div className="flex flex-row justify-between">
                 <h5 className="mb-2 text-lg font-bold">Avances</h5>
                 {(dataByID &&
-                  dataByID.DetailProject.stageProject ===
-                    "TERMINADO" &
-                  userData.rol !== Enum_Rol.ADMINISTRADOR) ||
+                  (dataByID.DetailProject.stageProject === "TERMINADO") &
+                    (userData.rol !== Enum_Rol.ADMINISTRADOR)) ||
                 listIdInscrip === Enum_StatusIncription.RECHAZADA ? (
                   <></>
                 ) : (
@@ -367,8 +365,7 @@ const IndexProject = () => {
               <div className="flex flex-row justify-between">
                 <h5 className="mb-2 text-lg font-bold">Incripciones</h5>
                 {dataByID &&
-                dataByID.DetailProject.stageProject ===
-                  "TERMINADO" &&
+                dataByID.DetailProject.stageProject === "TERMINADO" &&
                 userData.rol !== Enum_Rol.ADMINISTRADOR ? (
                   <></>
                 ) : (
@@ -420,4 +417,42 @@ const FormAdvancement = ({ submitForm, form, updateFormData }) => {
   );
 };
 
+const Table = ({ data, setId, userData, edit }) => {
+  return (
+    <tbody>
+      {data &&
+        data.ListProjects.map((u) => {
+          return (
+            <tr
+              key={u._id}
+              className="hover:bg-gray-50"
+              onClick={() => {
+                setId(u._id);
+              }}
+            >
+              <td className="py-4">{u.nameProject}</td>
+              <td className="py-4">
+                {u.startDate === null ? "Pendiente" : u.startDate.slice(0, 10)}
+              </td>
+              <td className="py-4">$ {u.budget}</td>
+              <td className="py-4">{u.stageProject.toLowerCase()}</td>
+              <td className="py-4">{u.statusProject.toLowerCase()}</td>
+              {u.stageProject === "TERMINADO" &&
+              userData.rol !== Enum_Rol.ADMINISTRADOR ? (
+                <></>
+              ) : (
+                <PrivateComponent rolesList={["ADMINISTRADOR", "LIDER"]}>
+                  <td className="flex py-4 justify-center">
+                    <Link to={`/admin/edit/project/${u._id}`}>
+                      <span>{edit}</span>
+                    </Link>
+                  </td>
+                </PrivateComponent>
+              )}
+            </tr>
+          );
+        })}
+    </tbody>
+  );
+};
 export default IndexProject;
