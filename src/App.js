@@ -29,6 +29,8 @@ import Template from "./pages/TemplateLayouth";
 import EditProject from "./pages/project/EditProject";
 import InscriptionsIndex from "./pages/inscriptions/InscriptionsIndex.jsx"
 import EditInscriptions from "./pages/inscriptions/EditInscriptions";
+import AdvancementIndex from "./pages/advancement/AdvancementIndex";
+import EditAdvancement from "./pages/advancement/EditAdvancement";
 
 // const httpLink = createHttpLink({
 //   uri: "https://api-proyecta-tic.herokuapp.com/graphql"
@@ -105,6 +107,8 @@ function App() {
                   <Route path="edit/project/:_id" element={<EditProject/>} />
                   <Route path="edit/inscriptions/:_id" element={<EditInscriptions/>} />
                   <Route path="inscriptions/index" element={<InscriptionsIndex/>} />
+                  <Route path="advancement/index" element={<AdvancementIndex/>}/>
+                  <Route path="edit/advancement/:_id" element={<EditAdvancement/>}/>
                 </Route>
              
               </Routes>
