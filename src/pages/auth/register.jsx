@@ -29,7 +29,7 @@ const Register = () => {
     if(mutationData){
       if(mutationData.register.token){
         setToken(mutationData.register.token);
-        navegate("/admin/users");
+        navegate("/admin");
       }
     }
   }, [mutationData, setToken, navegate]);

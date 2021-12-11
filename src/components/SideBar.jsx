@@ -105,7 +105,7 @@ const Items = ({ icon, items, setItemsSidebar, _id, setItem }) => {
       <div className="w-1 h-22 rounded-lg bg-tic-100"></div>
       <div className="flex flex-col justify-center items-center h-32 w-full p-2 hover:text-tic-100">
         <button onMouseEnter={() => ejct()}>
-          <Link to="/admin/user/index">{icon}</Link>
+          <Link to="/admin/users">{icon}</Link>
         </button>
         <span
           className="text-xs mt-2"

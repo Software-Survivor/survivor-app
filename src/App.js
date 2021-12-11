@@ -65,6 +65,7 @@ function App() {
       localStorage.removeItem("token");
     }
   };
+  
   useEffect(() => {
     if (authToken) {
       const decode = jwt_decode(authToken);
@@ -99,7 +100,7 @@ function App() {
                   <Route path="projects/" element={<IndexProject />} />
                   <Route path="projects/create" element={<CreateProject />} />
                   <Route path="users/" element={<IndexUsers />} />
-                  <Route path="users/edit/:_id" element={<EditUser />} />
+                  <Route path="user/edit/:_id" element={<EditUser />} />
                 </Route>
               </Routes>
             </BrowserRouter>

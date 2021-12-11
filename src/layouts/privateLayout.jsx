@@ -25,6 +25,7 @@ const PrivateLayouth = () => {
   ] = useMutation(REFRESH_TOKEN);
 
   useEffect(() => {
+
     refreshToken();
   }, [refreshToken]);
 
@@ -45,9 +46,9 @@ const PrivateLayouth = () => {
     console.log("Token actual", authToken);
   }, [authToken]);
 
-  if (!authToken) {
+/*   if (!authToken) {
     navigate('/auth/login')
-  }
+  } */
 
   const MouseEnter = () => {
     setItemsSidebar(false);

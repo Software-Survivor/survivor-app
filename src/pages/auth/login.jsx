@@ -26,7 +26,7 @@ const Login = () => {
     if(mutationData){
       if(mutationData.login.token){
         setToken(mutationData.login.token);
-        navegate("/admin/users");
+        navegate("/admin");
       }
     }
   }, [mutationData, setToken, navegate]);
@@ -43,7 +43,7 @@ const Login = () => {
       </form>
       <span>¿No tienes una cuenta?</span>
       <Link to='/auth/register'>
-        <span className='text-blue-700'>Regístrate</span>
+        <span className='text-blue-700 ml-2'>Regístrate</span>
       </Link>
     </div>
   );

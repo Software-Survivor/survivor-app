@@ -102,7 +102,7 @@ const NavBar = ({
             </span>
           </div>
         </div>
-        <div className="flex h-10 items-center hidden sm:flex w-32">
+        <div className="flex h-10 items-center sm:flex w-32">
           <img className="h-15 w-200" src="/logo.png" alt="Workflow logo" />
         </div>
         <div className="flex h-10 items-center text-lg">
@@ -141,7 +141,7 @@ const PopupNavbar = () => {
       <Logouth />
     </div>
   );
-};
+}; 
 
 const Logouth = () => {
   const { setToken } = useAuth();
