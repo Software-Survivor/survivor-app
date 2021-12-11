@@ -21,11 +21,16 @@ const CREATE_ADVANCEMENT = gql`
 `;
 
 const EDIT_ADVANCEMENT_BY_ID = gql`
-  mutation EditInscription(
-    $_id: String!
-    $statusInscription: Enum_StatusIncription!
+  mutation Mutation(
+    $id: String!
+    $description: String!
+    $observations: [String]!
   ) {
-    editInscription(_id: $_id, statusInscription: $statusInscription) {
+    editAdvancement(
+      _id: $id
+      description: $description
+      observations: $observations
+    ) {
       _id
     }
   }
