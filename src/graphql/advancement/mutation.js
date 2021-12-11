@@ -20,4 +20,15 @@ const CREATE_ADVANCEMENT = gql`
   }
 `;
 
-export { CREATE_ADVANCEMENT };
+const EDIT_ADVANCEMENT_BY_ID = gql`
+  mutation EditInscription(
+    $_id: String!
+    $statusInscription: Enum_StatusIncription!
+  ) {
+    editInscription(_id: $_id, statusInscription: $statusInscription) {
+      _id
+    }
+  }
+`;
+
+export { CREATE_ADVANCEMENT, EDIT_ADVANCEMENT_BY_ID };
