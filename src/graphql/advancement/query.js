@@ -12,8 +12,8 @@ const GET_ADVANCEMENTS = gql`
 `;
 
 const GET_ADVANCEMENT_BY_ID = gql`
-  query Advancement($id: String!) {
-    Advancement(_id: $id) {
+  query Advancement($_id: String!) {
+    Advancement(_id: $_id) {
       description
       observations
     }

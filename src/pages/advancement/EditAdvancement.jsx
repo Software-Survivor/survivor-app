@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import Header from "../../components/Header";
 import Input from "../../components/Input";
 import { EDIT_ADVANCEMENT_BY_ID } from "../../graphql/advancement/mutation";
@@ -9,6 +9,7 @@ import useFormData from "../../hook/useFormData";
 import Card from "../../components/card/Card";
 import Line from "../../components/Line";
 import ButtonLoading from "../../components/buttons/ButtonLoading";
+import TextArea from "../../components/inputs/TextArea";
 import alerts from "../../utils/iziToast/alerts";
 
 const EditAdvancement = () => {
@@ -28,15 +29,18 @@ const EditAdvancement = () => {
     variables: { _id },
   });
 
+  console.log("datos del query:", queryData);
+
   const submitForm = (e) => {
     e.preventDefault();
     console.log("formData: ", formData);
-    /* editAdvancement({
+    editAdvancement({
       variables: {
         _id,
-        statusInscription: formData.stageProject,
+        description: formData.description,
+        observations: formData.observations,
       },
-    }); */
+    });
   };
 
   useEffect(() => {
@@ -56,30 +60,37 @@ const EditAdvancement = () => {
     return <div>Cargando....</div>;
   }
 
+  console.log("datos:", queryData && queryData )
+
   return (
     <Card>
       <Header title="Edición de avances" />
       <Line />
 
       <div className="mx-10">
-
         <form
           className="mx-8 my-5"
           onSubmit={submitForm}
           onChange={updateFormData}
           ref={form}
         >
-
-          <Input
+          <TextArea
             type="text"
-            name="name"
+            name="observations"
             required={true}
-            label="Nombre"
-            /* defaultValue={queryData.User.name} */
+            label="Observaciones"
+            defaultValue={queryData && queryData.Advancement.observations[0]}
+          />
+
+          <TextArea
+            type="text"
+            name="description"
+            required={true}
+            label="Descripción"
+            defaultValue={queryData && queryData.Advancement.description}
           />
 
           <ButtonLoading nameButton="Guardar" type="submit" />
-
         </form>
       </div>
     </Card>

@@ -31,7 +31,8 @@ const EDIT_ADVANCEMENT_BY_ID = gql`
       description: $description
       observations: $observations
     ) {
-      _id
+      description
+      observations
     }
   }
 `;
