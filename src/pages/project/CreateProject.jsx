@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Card from "../../components/card/Card";
 import TitleCard from "../../components/card/TitleCard";
 import Line from "../../components/Line";
@@ -10,45 +10,62 @@ import { CREATE_PROJECT } from "../../graphql/project/mutation";
 import useFormData from "../../hook/useFormData";
 import alerts from "../../utils/iziToast/alerts";
 import { useUser } from "../../context/user";
+import { Link } from "react-router-dom";
+import PrivateRoute from "../../components/PrivateRoute";
 
 const CreateProject = () => {
-    const {userData} = useUser();
-    const { form, formData, updateFormData } = useFormData();
-    const [
-      createProject,
-      { data: mutationDataProject, loading: mutationLoadingProject, error: mutationErrorProject },
-    ] = useMutation(CREATE_PROJECT);
+  const { userData } = useUser();
+  const { form, formData, updateFormData } = useFormData();
+  const [
+    createProject,
+    {
+      data: mutationDataProject,
+      loading: mutationLoadingProject,
+      error: mutationErrorProject,
+    },
+  ] = useMutation(CREATE_PROJECT);
 
-
-    const destruturingDataProject  = () =>{ 
-        const _id = {leader:userData._id}
-        const {objectiveGeneral, objectiveEspecific, ...data} = formData
-        const {nameProject, budget, ...dataObjective} = formData
-        const n = {nameProject: data.nameProject}
-        const b = {budget: parseFloat(data.budget)}
-        const o = {objective:[{description:dataObjective["descriptionGeneral"], typeObjective:"GENERAL"}, {description:dataObjective["descriptionEspecific"], typeObjective:"ESPECIFICO"}]}
-        const projectData = {..._id, ...n, ...b, ...o}
-        return projectData;
-    }
-   
-  
-    const submitForm = (e) => {
-      e.preventDefault();
-      console.log('enviar datos backed: ', destruturingDataProject());
-      createProject({variables: destruturingDataProject()});
+  const destruturingDataProject = () => {
+    const _id = { leader: userData._id };
+    formData.budget = parseFloat(formData.budget);
+    const { objectiveGeneral, objectiveEspecific, ...data } = formData;
+    const { nameProject, budget, ...dataObjective } =
+      formData;
+    const o = {
+      objective: [
+        {
+          description: dataObjective["descriptionGeneral"],
+          typeObjective: "GENERAL",
+        },
+        {
+          description: dataObjective["descriptionEspecific"],
+          typeObjective: "ESPECIFICO",
+        },
+      ],
     };
+    const projectData = { ..._id, ...o, ...data };
+    return projectData;
+  };
 
-    useEffect(() => {
-        if (mutationDataProject) {
-          alerts.alertSucees("Usuario modificado correctamente");
-        }
-      }, [mutationDataProject]);
+  const submitForm = (e) => {
+    e.preventDefault();
+    console.log("enviar datos backed: ", destruturingDataProject());
+    createProject({variables: destruturingDataProject()});
     
-      useEffect(() => {
-        if (mutationErrorProject) {
-          alerts.alertErrorMessage("Error al ejecutar la mutación");
-        }
-      }, [mutationErrorProject]);
+  };
+
+  useEffect(() => {
+    if (mutationDataProject) {
+      alerts.alertSucees("Usuario guardado correctamente");
+      return <Link to="/admin/project/index" />
+    }
+  }, [mutationDataProject]);
+
+  useEffect(() => {
+    if (mutationErrorProject) {
+      alerts.alertErrorMessage("Error al ejecutar la mutación");
+    }
+  }, [mutationErrorProject]);
 
   const plusIcons = (
     <svg
@@ -69,26 +86,53 @@ const CreateProject = () => {
     </svg>
   );
   return (
+    <PrivateRoute rolesList={["LIDER"]}>
     <Card>
       <TitleCard title="Nuevo Proyecto" />
       <Line />
-      <form className="mx-8 my-5" onSubmit={submitForm} onChange={updateFormData} ref={form}>
+      <form
+        className="mx-8 my-5"
+        onSubmit={submitForm}
+        onChange={updateFormData}
+        ref={form}
+      >
         <div className="flex flex-row">
           <div className="flex-1 mr-1">
-            <Input label="Nombre" type="text" name="nameProject" />
+            <Input
+              label="Nombre"
+              type="text"
+              name="nameProject"
+              required="true"
+            />
           </div>
           <div className="flex-1 ml-1">
-            <Input label="Presupuesto" type="number" name="budget" />
+            <Input
+              label="Presupuesto"
+              type="number"
+              name="budget"
+              required="true"
+            />
           </div>
         </div>
         <Line />
-        <TextArea label="Objetivo General" type="text" name="descriptionGeneral" />
-        <TextArea label="Objetivo Específico" type="text" name="descriptionEspecific" />
+        <TextArea
+          label="Objetivo General"
+          type="text"
+          name="descriptionGeneral"
+          required="true"
+        />
+        <TextArea
+          label="Objetivo Específico"
+          type="text"
+          name="descriptionEspecific"
+          required="true"
+        />
 
         <Line />
         <ButtonLoading nameButton="Guardar" type="submit" />
       </form>
     </Card>
+    </PrivateRoute>
   );
 };
 

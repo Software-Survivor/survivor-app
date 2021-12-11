@@ -6,11 +6,8 @@ import { Link } from "react-router-dom";
 import alerts from "../../utils/iziToast/alerts";
 import { Enum_Rol } from "../../utils/enum";
 import { Enum_Status } from "../../utils/enum";
-import Table from "../../components/Tables";
-import Card from "../../components/card/Card";
 
 const IndexUsers = () => {
-  const headTitle = ["#", "Nombre", "Cel", "Mail", "Dirección", "Fecha", "Teléfono", "Fin"];
   const sx = "15";
   const edit = (
     <svg
@@ -44,10 +41,53 @@ const IndexUsers = () => {
   }
 
   return (
-    <Card>
+    <>
       <Header title={"Usuarios"} />
-          <Table headTitle={headTitle} dataDb={data} subdata="Users" />
-    </Card>
+      <div className="text-xs pb-1 divide-x divide-gray-500">
+        <div className="bg-white rounded-lg shadow-md px-8 py-8 divide-y divide-gray-100">
+          <span className="text-lg text-gra">Listado</span>
+          
+          <table className="my-4 table-fixed w-full text-left divide-y divide-gray-100">
+            <thead>
+              <tr>
+                <th className="py-4">Nombre</th>
+                <th className="py-4">Apellido</th>
+                <th className="py-4">Identificación </th>
+                <th className="py-4">Email</th>
+                <th className="py-4">Rol</th>
+                <th className="py-4">Estado</th>
+                <th className="py-4">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data && data.Users ? (
+                <>
+                  {data.Users.map((u) => {
+                    return (
+                      <tr key={u._id}>
+                        <td className="py-4">{u.name}</td>
+                        <td className="py-4">{u.lastname}</td>
+                        <td className="py-4">{u.identification}</td>
+                        <td className="py-4">{u.email}</td>
+                        <td className="py-4">{Enum_Rol[u.rol]}</td>
+                        <td className="py-4">{Enum_Status[u.status]}</td>
+                        <td className="py-4">
+                          <Link to={`/admin/edit/user/${u._id}`}>
+                            <span>{edit}</span>
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </>
+              ) : (
+                <div>no autorizado</div>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
   );
 };
 

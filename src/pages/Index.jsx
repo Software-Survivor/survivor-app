@@ -2,6 +2,8 @@ import React from "react";
 import { useUser } from "../context/user";
 import { useDark } from "../context/dark";
 import { useNavigate } from "react-router";
+import { useAuth } from "../context/authContext";
+import { Link } from "react-router-dom";
 const Index = () => {
   const navigate_ = useNavigate();
   const { userData } = useUser();
@@ -31,7 +33,29 @@ const Index = () => {
         </button>
         </div>
       </div>
+      <Logouth/>
     </>
+  );
+};
+
+const Logouth = () => {
+  const { setToken } = useAuth();
+  const deleteToken = () => {
+    setToken(null);
+  };
+  return (
+    <div
+      onClick={() => {
+        deleteToken();
+      }}
+    >
+      {" "}
+      <Link to="/auth/login">
+        <li className="flex hover:bg-gray-100 items-center h-6 py-4 pl-3">
+          <span>Cerrar</span>
+        </li>
+      </Link>
+    </div>
   );
 };
 

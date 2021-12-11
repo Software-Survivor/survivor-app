@@ -26,8 +26,9 @@ import LayoutAuth from "./layouts/LayoutAuth";
 import Login from "./pages/auth/login";
 import jwt_decode from "jwt-decode";
 import Template from "./pages/TemplateLayouth";
-import Tables from "./components/Tables";
-import Example from "./pages/Example";
+import EditProject from "./pages/project/EditProject";
+import InscriptionsIndex from "./pages/inscriptions/InscriptionsIndex.jsx"
+import EditInscriptions from "./pages/inscriptions/EditInscriptions";
 
 // const httpLink = createHttpLink({
 //   uri: "https://api-proyecta-tic.herokuapp.com/graphql"
@@ -89,7 +90,6 @@ function App() {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/template" element={<Template />} />
-                <Route path="/table" element={<Tables />} />
                 <Route path="/auth" element={<LayoutAuth />}>
                   <Route path="register" element={<Register />} />
                   <Route path="login" element={<Login />} />
@@ -102,7 +102,9 @@ function App() {
                   <Route path="project/create" element={<CreateProject />} />
                   <Route path="user/index" element={<IndexUsers />} />
                   <Route path="edit/user/:_id" element={<EditUser />} />
-                  <Route path="example" element={<Example/>} />
+                  <Route path="edit/project/:_id" element={<EditProject/>} />
+                  <Route path="edit/inscriptions/:_id" element={<EditInscriptions/>} />
+                  <Route path="inscriptions/index" element={<InscriptionsIndex/>} />
                 </Route>
              
               </Routes>

@@ -13,7 +13,8 @@ import { Enum_Status } from "../../utils/enum";
 
 const EditUser = () => {
   const { form, formData, updateFormData } = useFormData(null);
-  const  _id  = "618ef7a43cceedc9c449ae6a"
+  const _id_  = useParams();
+  const _id =  _id_["_id"]
   const {
     data: queryData,
     error: queryError,
