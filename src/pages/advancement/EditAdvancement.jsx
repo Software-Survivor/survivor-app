@@ -11,8 +11,10 @@ import Line from "../../components/Line";
 import ButtonLoading from "../../components/buttons/ButtonLoading";
 import TextArea from "../../components/inputs/TextArea";
 import alerts from "../../utils/iziToast/alerts";
+import { useNavigate } from "react-router-dom";
 
 const EditAdvancement = () => {
+  const nav = useNavigate();
   const { form, formData, updateFormData } = useFormData(null);
   const _id_ = useParams();
   const _id = _id_["_id"];
@@ -41,6 +43,7 @@ const EditAdvancement = () => {
         observations: formData.observations,
       },
     });
+    nav('/admin/advancement/index')
   };
 
   useEffect(() => {
@@ -60,7 +63,7 @@ const EditAdvancement = () => {
     return <div>Cargando....</div>;
   }
 
-  console.log("datos:", queryData && queryData )
+  console.log("datos:", queryData && queryData);
 
   return (
     <Card>
@@ -79,15 +82,13 @@ const EditAdvancement = () => {
             name="observations"
             required={true}
             label="Observaciones"
-            defaultValue={queryData && queryData.Advancement.observations[0]}
           />
 
           <TextArea
             type="text"
             name="description"
-            required={true}
+            required={false}
             label="Descripción"
-            defaultValue={queryData && queryData.Advancement.description}
           />
 
           <ButtonLoading nameButton="Guardar" type="submit" />
