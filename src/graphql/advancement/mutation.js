@@ -23,7 +23,7 @@ const CREATE_ADVANCEMENT = gql`
 const EDIT_ADVANCEMENT_BY_ID = gql`
   mutation Mutation(
     $_id: String!
-    $description: String
+    $description: String!
     $observations: [String]!
   ) {
     editAdvancement(
