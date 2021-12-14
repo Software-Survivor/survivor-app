@@ -78,7 +78,7 @@ const CreateProject = () => {
       strokeWidth="1"
       strokeLinecap="round"
       strokeLinejoin="round"
-      class="feather feather-plus-circle"
+      className="feather feather-plus-circle"
     >
       <circle cx="12" cy="12" r="10"></circle>
       <line x1="12" y1="8" x2="12" y2="16"></line>
