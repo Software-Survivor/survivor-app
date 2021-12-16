@@ -42,7 +42,7 @@ const SideBar = ({ setItemsSidebar, movilResponsiveButton, setItem}) => {
             setItemsSidebar={setItemsSidebar}
             _id="advance"
             setItem={setItem}
-            path="/admin/advance/index"
+            path="/admin/advancement/index"
           />
            <Items
             icon={inscriptionsIcon()}
@@ -50,7 +50,7 @@ const SideBar = ({ setItemsSidebar, movilResponsiveButton, setItem}) => {
             setItemsSidebar={setItemsSidebar}
             _id="inscription"
             setItem={setItem}
-            path="/admin/inscription/index"
+            path="/admin/inscriptions/index"
           />
         </div>
       </div>
