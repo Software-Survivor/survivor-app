@@ -15,6 +15,7 @@ import DropDown from "../../components/DropDown";
 import { Enum_ProjectStatus, Enum_ProjectStage } from "../../utils/enum";
 import Header from "../../components/Header";
 import alerts from "../../utils/iziToast/alerts";
+import PrivateComponent from "../../components/PrivateComponents";
 
 
 const EditProject = () => {
@@ -150,10 +151,8 @@ const EditProject = () => {
               defaultValue={queryData && queryData.DetailProject.budget}
             />
           </div>
-       
-        
         </div>
-
+      <PrivateComponent rolesList={["ADMINISTRADOR"]}>
         <div className="flex flex-row">
           <div className="flex-1 mr-1">
             <DropDown
@@ -174,6 +173,33 @@ const EditProject = () => {
             />
           </div>
         </div>
+        </PrivateComponent>
+
+        <PrivateComponent rolesList={["LIDER"]}>
+        <div className="flex flex-row">
+          <div className="flex-1 mr-1">
+            <Input
+            type="text"
+            name="stageProject"
+            required={true}
+            label="Fase"
+            defaultValue={queryData && queryData.DetailProject.stageProject}
+            disabled
+
+            />
+          </div>
+          <div className="flex-1 mr-1">
+            <Input
+             type="text"
+              label="Estado"
+              name="statusProject"
+              defaultValue={queryData && queryData.DetailProject.statusProject}
+              required={true}
+              disabled
+            />
+          </div>
+        </div>
+        </PrivateComponent>
 
         <Line />
         <ButtonLoading nameButton="Guardar" type="submit" />

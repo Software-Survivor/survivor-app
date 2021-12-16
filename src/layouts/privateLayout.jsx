@@ -49,7 +49,7 @@ const PrivateLayouth = () => {
 
   return (
     
-      <div className="relative flex flex-col h-screen">
+      <div className="relative flex flex-col h-screen font-nunito">
         <NavBar
           popupInfoProfile={popupInfoProfile}
           setPopupInfoProfile={setPopupInfoProfile}
@@ -70,7 +70,7 @@ const PrivateLayouth = () => {
             onMouseEnter={() => {
               MouseEnter();
             }} >
-          <div className="overflow-scroll">
+          <div className="overflow-auto">
             <Content>
               <Outlet />
             </Content>
