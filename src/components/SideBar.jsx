@@ -8,7 +8,7 @@ const SideBar = ({ setItemsSidebar, movilResponsiveButton, setItem}) => {
   return (
     <div className={`${movilResponsiveButton ? "" : "hidden"} sm:flex flex-col bg-white w-27 h-screen rounded-lg shadow-lg rounded-xl text-gray-50`}>
       {/* <div className="flex-1 bg-white shadow-lg border-gray-50 w-27 rounded-xl z-10 sm:flex h-full hidden"> */}
-      <div className="overflow-scroll">
+      <div className="overflow-auto">
         <div className="divide-y divide-gray-100 text-5xl w-full">
           <PrivateComponent rolesList={["ADMINISTRADOR"]}>
             <Items
