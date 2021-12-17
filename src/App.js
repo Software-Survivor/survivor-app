@@ -93,8 +93,8 @@ function App() {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/template" element={<Template />} />
+                <Route path="/auth/register" element={<Register />} />
                 <Route path="/auth" element={<LayoutAuth />}>
-                  <Route path="register" element={<Register />} />
                   <Route path="login" element={<Login />} />
                 </Route>
                 <Route path="/admin/index" element={<AdminIndex />} />

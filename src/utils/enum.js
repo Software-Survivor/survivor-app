@@ -10,6 +10,11 @@ export const Enum_Status = {
     NO_AUTORIZADO: "No autorizado",
 };
 
+export const Enum_Status_Filter_Leader = {
+    AUTORIZADO: "Autorizado",
+    NO_AUTORIZADO: "No autorizado",
+};
+
 export const Enum_ProjectStatus = {
     ACTIVO:"ACTIVO",
     INACTIVO: "INACTIVO",

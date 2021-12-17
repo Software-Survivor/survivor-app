@@ -185,63 +185,62 @@ const EditProject = () => {
     },
   ] = useMutation(EDIT_INSCRIPTION_ENDDATE_NOW);
 
-  // const listIdInscriptionsBYProjects = () => {
-  //   const list = [];
-  //   if (queryData) {
-  //     queryData["DetailProject"].inscription.map((u) => {
-  //       list.push(u._id);
-  //     });
-  //   }
-  //   return list;
-  // };
-  // const listIdInscrip = listIdInscriptionsBYProjects();
+  const listIdInscriptionsBYProjects = () => {
+    const list = [];
+    if (queryData) {
+      queryData["DetailProject"].inscription.map((u) => {
+        list.push(u._id);
+      });
+    }
+    return list;
+  };
+  const listIdInscrip = listIdInscriptionsBYProjects();
   // console.log("formData", formData);
   // console.log("arrayObjectiveForm: ", arrayObjectiveForm());
 
   const submitForm = (e) => {
     e.preventDefault();
-    // const formDataFilter = arrayObjectiveForm();
-    // console.log("formDataFilter", formDataFilter);
+    //  console.log("formData", formData);
 
-    // formData["budget"] = parseFloat(formData["budget"]);
-    // if (
-    //   formData["statusProject"] === "ACTIVO" &&
-    //   formData["stageProject"] === "NULO"
-    // ) {
-    //   formData["stageProject"] = "INICIADO";
-    //   const yourDate = new Date(Date.now());
-    //   formData["startDate"] = yourDate.toISOString().split()[0];
-    //   console.log("formDataFilter", formData);
-    // }
-    // if (formData["statusProject"] === "INACTIVO") {
-    //   //Si cambia el estado del proyecto a estado inactivo, todas las fechas de finalización del las inscripcines asociadas a ese proyecto y que esten vacias, quedan automaticamente con la fecha actual.
-    //   listIdInscrip.map((u) => {
-    //     editInscriptionEndDate({ variables: { _id: u } });
-    //   });
-    // }
-    // if (formData["stageProject"] === "TERMINADO") {
-    //   // Si la fase del proyecto cambia a terminado, el estado cambia a inactivo
-    //   formData["statusProject"] = "INACTIVO";
-    //   const yourDate = new Date(Date.now());
-    //   formData["endDate"] = yourDate.toISOString().split()[0];
+    formData["budget"] = parseFloat(formData["budget"]);
+    if (
+      formData["statusProject"] === "ACTIVO" &&
+      formData["stageProject"] === "NULO"
+    ) {
+      formData["stageProject"] = "INICIADO";
+      const yourDate = new Date(Date.now());
+      formData["startDate"] = yourDate.toISOString().split()[0];
+      console.log("formDataFilter", formData);
+    }
+    if (formData["statusProject"] === "INACTIVO") {
+      //Si cambia el estado del proyecto a estado inactivo, todas las fechas de finalización del las inscripcines asociadas a ese proyecto y que esten vacias, quedan automaticamente con la fecha actual.
+      listIdInscrip.map((u) => {
+        editInscriptionEndDate({ variables: { _id: u } });
+      });
+    }
+    if (formData["stageProject"] === "TERMINADO") {
+      // Si la fase del proyecto cambia a terminado, el estado cambia a inactivo
+      formData["statusProject"] = "INACTIVO";
+      const yourDate = new Date(Date.now());
+      formData["endDate"] = yourDate.toISOString().split()[0];
 
-    //   editProject({
-    //     variables: {
-    //       _id,
-    //       fields: formData,
-    //     },
-    //   });
-    //   listIdInscrip.map((u) => {
-    //     editInscriptionEndDate({ variables: { _id: u } });
-    //   });
-    // } else {
-    //   editProject({
-    //     variables: {
-    //       _id,
-    //       fields: formData,
-    //     },
-    //   });
-    // }
+      editProject({
+        variables: {
+          _id,
+          fields: formData,
+        },
+      });
+      listIdInscrip.map((u) => {
+        editInscriptionEndDate({ variables: { _id: u } });
+      });
+    } else {
+      editProject({
+        variables: {
+          _id,
+          fields: formData,
+        },
+      });
+    }
   };
 
   useEffect(() => {

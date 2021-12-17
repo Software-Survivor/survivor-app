@@ -9,7 +9,7 @@ import DropDown from "../../components/DropDown";
 import Header from "../../components/Header";
 import useFormData from "../../hook/useFormData";
 import alerts from "../../utils/iziToast/alerts";
-import { Enum_Status } from "../../utils/enum";
+import { Enum_Status, Enum_Status_Filter_Leader } from "../../utils/enum";
 import PrivateComponent from "../../components/PrivateComponents";
 import { useUser } from "../../context/user";
 
@@ -40,7 +40,6 @@ const EditUser = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
-    // console.log("formData, ", formData)
     editUser({
       variables: {
         _id,
@@ -58,7 +57,6 @@ const EditUser = () => {
     }
   }, [queryError, mutationError]);
 
-  console.log("rol", userData.rol)
 
   if (queryLoading) {
     return <div>Cargando....</div>;
@@ -120,7 +118,7 @@ const EditUser = () => {
                 name="status"
                 defaultValue={queryData.User.status}
                 required={true}
-                options={userData.rol === "ADMINISTRADOR" ? Enum_Status :["AUTORIZADO", "NO AUTORIZADO"] }
+                options={userData.rol === "ADMINISTRADOR" ? Enum_Status : Enum_Status_Filter_Leader }
               />
               </PrivateComponent>
               <ButtonLoading
