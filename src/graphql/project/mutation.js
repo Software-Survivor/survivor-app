@@ -45,4 +45,12 @@ const CREATE_OBJECTIVE = gql`
   }
 `;
 
-export { CREATE_PROJECT, CREATE_OBJECTIVE, EDIT_PROJECT, EDIT_STAGE_PROJECT };
+const EDIT_OBJECTIVE = gql`
+mutation EditObjective($idProject: String!, $indexObjective: Int!, $field: fieldObjective!) {
+  editObjective(idProject: $idProject, indexObjective: $indexObjective, field: $field) {
+    nameProject
+  }
+}
+`;
+
+export { CREATE_PROJECT, CREATE_OBJECTIVE, EDIT_PROJECT, EDIT_STAGE_PROJECT, EDIT_OBJECTIVE };

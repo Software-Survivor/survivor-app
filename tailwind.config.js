@@ -26,6 +26,7 @@ module.exports = {
         "gray-b": "#585858",
         "gray-c": "#8f8f8f",
         "gray-d": "#f9f9f9",
+        "blue-a": "#4556ac",
       },
       height: {
         21: "5.25rem",
