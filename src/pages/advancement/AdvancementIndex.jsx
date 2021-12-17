@@ -3,17 +3,24 @@ import React from "react";
 import Card from "../../components/card/Card";
 import Header from "../../components/Header";
 import Line from "../../components/Line";
-import Table from "../../components/Tables";
 import { GET_ADVANCEMENTS} from '../../graphql/advancement/query'
 
 const AdvancementIndex = () => {
   const { data, error, loading } = useQuery(GET_ADVANCEMENTS);
-  const headTitle = ["Tipo", "ID" , "Fecha", "Descripción", "observación"]
+  console.log("data", data)
   return (
     <Card>
-      <Header title="Listado de avances" />
-      <Line />
-      <Table dataDb={data} subdata={"Advancements"} headTitle={headTitle} path={"advancement"}/>
+     {data && data.Advancements.map((u)=>{
+       return(
+<>
+         <li>{u.date}</li>
+         <li>{u.description}</li>
+         <li>{u.observations}</li>
+         <li>{u.project.nameProject}</li>
+         <li>{u.createdBy.name}</li>
+         </>
+       )
+     })}
     </Card>
   )
 }
