@@ -37,7 +37,7 @@ import Testk from "./pages/project/Testk";
 //   uri: "https://api-proyecta-tic.herokuapp.com/graphql"
 // })
 const httpLink = createHttpLink({
-  uri: "http://localhost:4001/graphql",
+  uri: "https://survivorbackend.herokuapp.com/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -93,8 +93,8 @@ function App() {
               <Routes>
                 <Route path="/" element={<Index />} />
                 <Route path="/template" element={<Template />} />
+                <Route path="/auth/register" element={<Register />} />
                 <Route path="/auth" element={<LayoutAuth />}>
-                  <Route path="register" element={<Register />} />
                   <Route path="login" element={<Login />} />
                 </Route>
                 <Route path="/admin/index" element={<AdminIndex />} />

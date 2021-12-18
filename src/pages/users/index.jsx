@@ -60,7 +60,7 @@ const IndexUsers = () => {
                 <th className="py-4">Email</th>
                 <th className="py-4">Rol</th>
                 <th className="py-4">Estado</th>
-                <PrivateComponent rolesList={["ADMINISTRADOR"]}>
+                <PrivateComponent rolesList={["ADMINISTRADOR", "LIDER"]}>
                 <th className="py-4">Opciones</th>
                 </PrivateComponent>
               </tr>
@@ -77,7 +77,7 @@ const IndexUsers = () => {
                         <td className="py-4">{u.email}</td>
                         <td className="py-4">{Enum_Rol[u.rol]}</td>
                         <td className="py-4">{Enum_Status[u.status]}</td>
-                        <PrivateComponent rolesList={["ADMINISTRADOR"]}>
+                        <PrivateComponent rolesList={["ADMINISTRADOR", "LIDER"]}>
                         <td className="py-4">
                           <Link to={`/admin/edit/user/${u._id}`}>
                             <span>{edit}</span>

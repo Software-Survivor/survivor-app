@@ -33,7 +33,7 @@ const IndexProject = () => {
   const [valueFilterListProject, setValueFilterListProject] =
     useState("Estado");
   var listProjectByLeader = {};
-  console.log("www", valueFilterListProject);
+  console.log("data", data);
 
   const filter = () => {
     var active = [];
@@ -66,6 +66,7 @@ const IndexProject = () => {
       return todos;
     }
   };
+
 
   if (data) {
     listProjectByLeader["ListProjects"] = filter();

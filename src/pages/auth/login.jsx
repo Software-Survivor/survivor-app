@@ -6,7 +6,7 @@ import { LOGIN } from "../../graphql/auth/mutation";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/authContext";
-import Card from "../../components/card/Card";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const navegate = useNavigate();
@@ -61,7 +61,7 @@ const Login = () => {
           </div>
           <Input type="password" name="password" required />
           <div className="flex justify-between">
-            <a href="#">Quiero registrarme</a>
+            <Link to="/auth/register/">Quiero registrarme</Link>
 
             <ButtonLoading
               nameButton="Iniciar sesión"
