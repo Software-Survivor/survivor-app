@@ -34,12 +34,12 @@ import EditAdvancement from "./pages/advancement/EditAdvancement";
 import Testk from "./pages/project/Testk";
 import Hh from "./pages/advancement/hh";
 
-// const httpLink = createHttpLink({
-//   uri: "https://survivorbackend.herokuapp.com/graphql",
-// });
 const httpLink = createHttpLink({
-  uri: "http://localhost:4001/graphql",
+  uri: "https://survivorbackend.herokuapp.com/graphql",
 });
+// const httpLink = createHttpLink({
+//   uri: "http://localhost:4001/graphql",
+// });
 
 
 const authLink = setContext((_, { headers }) => {
