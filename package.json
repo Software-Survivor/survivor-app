@@ -19,6 +19,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    "startc": "craco start",
+    "buildc": "craco build",
+    "testc": "craco test",
     "start": "react-scripts start",
     "build": "npm run build:css && react-scripts build",
     "test": "react-scripts test",

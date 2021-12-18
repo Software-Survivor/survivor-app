@@ -82,11 +82,6 @@ function App() {
   }, [authToken]);
 
   return (
-<<<<<<< HEAD
-    <div className="text-7xl font-mono font-bold text-start m-80">
-      Hola Mundo!
-    </div>
-=======
     <ApolloProvider client={client}>
       <AuthContext.Provider value={{ setToken, authToken, setAuthToken }}>
         <DarkContext.Provider value={{ modeDark, setModeDark }}>
@@ -121,7 +116,6 @@ function App() {
         </DarkContext.Provider>
       </AuthContext.Provider>
     </ApolloProvider>
->>>>>>> dev_gadea
   );
 }
 
