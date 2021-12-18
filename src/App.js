@@ -36,6 +36,10 @@ import Testk from "./pages/project/Testk";
 const httpLink = createHttpLink({
   uri: "https://survivorbackend.herokuapp.com/graphql",
 });
+// const httpLink = createHttpLink({
+//   uri: "http://localhost:4001/graphql",
+// });
+
 
 const authLink = setContext((_, { headers }) => {
   const token = JSON.parse(localStorage.getItem("token"));
