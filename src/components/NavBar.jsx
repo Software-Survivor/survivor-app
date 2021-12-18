@@ -128,18 +128,20 @@ const NavBar = ({
             ></button>
           </div>
         </div>
-        {popupInfoProfile ? <PopupNavbar /> : <></>}
+        {popupInfoProfile ? <PopupNavbar userData={userData} /> : <></>}
       </div>
     </>
   );
 };
 
-const PopupNavbar = () => {
+const PopupNavbar = ({userData}) => {
   return (
     <div className="flex flex-col bg-white w-44 absolute right-10 top-20 rounded-lg border border-gray-75 pt-2 pb-2">
+      <Link to={`/admin/edit/user/${userData._id}`}>
       <li className="flex hover:bg-gray-100 items-center h-6 py-4 pl-3">
         <span>Perfil</span>
       </li>
+        </Link>
       <div className="h-0.5 bg-gray-100 my-2"></div>
       <Logouth />
     </div>

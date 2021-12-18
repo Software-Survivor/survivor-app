@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useUser } from "../../context/user";
-import {editIcon} from "../../utils/icons";
+import { editIcon } from "../../utils/icons";
 import FilterAndSearch from "../../components/FilterAndSearch";
 import TitleAndNavegation from "../../components/TitleAndNavegation";
 import Card from "../../components/card/Card";
@@ -190,7 +190,10 @@ const IndexProject = () => {
     <>
       <div className="flex flex-col px-4 mt-4 ">
         <div className="flex flex-row justify-between pb-8">
-          <TitleAndNavegation title="Lista de proyectos" items={["Inicio", "Proyectos", "Lista"]}/>
+          <TitleAndNavegation
+            title="Lista de proyectos"
+            items={["Inicio", "Proyectos", "Lista"]}
+          />
           <div className="">
             <PrivateComponent rolesList={["ADMINITRADOR", "LIDER"]}>
               <div className="flex mx-4">
@@ -202,12 +205,13 @@ const IndexProject = () => {
             </PrivateComponent>
           </div>
         </div>
-        
 
-       <FilterAndSearch setViewPopUpFilter={setViewPopUpFilter} viewPopUpFilter={viewPopUpFilter} setValueFilterListProject={setValueFilterListProject} valueFilterListProject={valueFilterListProject}/>
-
-
-      
+        <FilterAndSearch
+          setViewPopUpFilter={setViewPopUpFilter}
+          viewPopUpFilter={viewPopUpFilter}
+          setValueFilterListProject={setValueFilterListProject}
+          valueFilterListProject={valueFilterListProject}
+        />
       </div>
 
       <div className="flex flex-col md:flex-row text-md ">
@@ -267,9 +271,9 @@ const IndexProject = () => {
                   </div>
                 ) : (
                   <div class="relative h-3 w-3">
-                  <div class="animate-ping h-full w-full rounded-full bg-red-400 opacity-75"></div>
-                  <div class="absolute rounded-full h-3 w-3 bg-red-500 top-0"></div>
-                </div>
+                    <div class="animate-ping h-full w-full rounded-full bg-red-400 opacity-75"></div>
+                    <div class="absolute rounded-full h-3 w-3 bg-red-500 top-0"></div>
+                  </div>
                 )}
               </div>
               <div className="flex flex-col items-center mt-7">
@@ -318,11 +322,13 @@ const IndexProject = () => {
                 listIdInscrip === Enum_StatusIncription.RECHAZADA ? (
                   <></>
                 ) : (
+                  <PrivateComponent rolesList={["ESTUDIANTE"]}>
                   <SwitchBotton
                     name="Nuevo"
                     setValue={setViewForm}
                     value={viewForm}
                   />
+                  </PrivateComponent>
                 )}
               </div>
               {!viewForm ? (
@@ -361,6 +367,7 @@ const IndexProject = () => {
                 userData.rol !== Enum_Rol.ADMINISTRADOR ? (
                   <></>
                 ) : (
+                   <PrivateComponent rolesList={["ESTUDIANTE"]}>
                   <div className="flex flex-row items-center justify-center border border-tic-25 rounded-xl h-5 pr-6 pl-1">
                     <button
                       onClick={() => createIncription_()}
@@ -369,6 +376,7 @@ const IndexProject = () => {
                       Inscribirme
                     </button>
                   </div>
+                  </PrivateComponent>
                   // <ButtonBorderLine name_="Nuevo" value_={createIncription_()}/>
                 )}
               </div>

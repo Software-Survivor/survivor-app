@@ -217,7 +217,7 @@ export const searchIcon = (size, fill) => {
   return searchIcon_;
 };
 
-export const circleIcon = (size, fill="black") => {
+export const circleIcon = (size, fill = "black") => {
   const circleIcon_ = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -235,4 +235,46 @@ export const circleIcon = (size, fill="black") => {
     </svg>
   );
   return circleIcon_;
+};
+
+export const slashIcon = (size = "15", fill = "none", stroke = "1") => {
+  const slashIcon_ = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill={fill}
+      stroke="currentColor"
+      strokeWidth={stroke}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      class="feather feather-slash"
+    >
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+    </svg>
+  );
+  return slashIcon_;
+};
+
+export const checkIcon = (size = "15", fill = "none", stroke = "1") => {
+  const checkIcon_ = (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill={fill}
+      stroke="currentColor"
+      strokeWidth={stroke}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      class="feather feather-check-circle"
+    >
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+    </svg>
+  );
+  return checkIcon_;
 };

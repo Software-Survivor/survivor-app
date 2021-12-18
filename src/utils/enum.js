@@ -23,8 +23,8 @@ export const Enum_ProjectStage = {
 };
 
 export const Enum_ObjetiveType = {
-    GENERAL: "General",
-    ESPECIFICO: "Específico",
+    GENERAL: "GENERAL",
+    ESPECIFICO: "ESPECIFICO",
 
 }
 
